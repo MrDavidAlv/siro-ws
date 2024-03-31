@@ -1,4 +1,4 @@
-# PROYECTOR ROS2 HUMBLE
+# PROYECTO ROS2 HUMBLE
 
 
 ROS 2 (Robot Operating System 2) es una plataforma de código abierto diseñada para facilitar el desarrollo, operación y mantenimiento de sistemas robóticos y de automatización industrial. Ofrece una arquitectura modular y flexible que permite la comunicación entre componentes distribuidos, soportando una variedad de sistemas operativos y arquitecturas de hardware. ROS 2 se destaca por su capacidad de escalabilidad, seguridad y robustez, lo que lo convierte en una herramienta crucial para la creación de sistemas robóticos avanzados en diversos entornos industriales y de investigación.
@@ -26,6 +26,17 @@ ROS 2 (Robot Operating System 2) es una plataforma de código abierto diseñada 
 
 
     ### `colcon build`
+
+
+
+
+
+
+
+
+
+
+
 
 
     Se crearon las carpetas de compilación de este proyecto.
