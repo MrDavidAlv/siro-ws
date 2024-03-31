@@ -4,7 +4,7 @@ En ROS 2, los paquetes para C++ se pueden crear utilizando la herramienta `ament
 
 
 
-### Paquetes en C++:
+### 📦 Paquetes en C++:
 Para crear paquetes en C++ en ROS 2, se utiliza la herramienta ament_cmake. Esta herramienta proporciona una estructura de directorios estándar y un conjunto de macros de CMake que facilitan la compilación y la gestión de dependencias. Aquí hay un resumen de los pasos comunes para crear un paquete en C++ en ROS 2:
 
 
@@ -20,9 +20,11 @@ Para crear paquetes en C++ en ROS 2, se utiliza la herramienta ament_cmake. Esta
 
 6. `Ejecución y prueba` : Finalmente, puedes ejecutar y probar tu paquete utilizando las herramientas de ROS 2, como `ros2 run` o `ros2 launch`, según sea necesario.
 
+### [`👉 Crea paquetes con C++`](./cpp_siro/)
 
 
-### Paquetes en Python:
+
+### 📦 Paquetes en Python:
 Para crear paquetes en Python en ROS 2, se utiliza la herramienta `ament_python`, que es una extensión de `setuptools` adaptada para el entorno de ROS 2. Aquí hay un resumen de los pasos comunes para crear un paquete en Python en ROS 2:
 
 1. `Creación del paquete`: Al igual que con los paquetes en C++, puedes crear un nuevo paquete utilizando el comando `ros2 pkg create <package_name> --build-type ament_python`.
@@ -39,6 +41,8 @@ Para crear paquetes en Python en ROS 2, se utiliza la herramienta `ament_python`
 
 En resumen, ROS 2 ofrece herramientas específicas tanto para el desarrollo en C++ como en Python, lo que permite a los desarrolladores crear paquetes de manera eficiente y gestionar sus dependencias de una manera sencilla.
 
+### [`👉 Crea paquetes con Python`](./python_siro/)
 
+--
 
-### [`atras`](./../)        [`siro_ws`](./../)
+### [`↩️ atras`](./../)        [`🔄 siro_ws`](./../)
