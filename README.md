@@ -12,19 +12,19 @@ ROS 2 (Robot Operating System 2) es una plataforma de código abierto diseñada 
 1. Creación del workspace.
 
 
-    ### `mkdir -p siro_ws/src`
+### `mkdir -p siro_ws/src`
 
 
 2. Ingresamos a `siro_ws`
 
 
-    ### `cd siro_ws`
+### `cd siro_ws`
 
 
 3. Compilación del proyecto
 
 
-    ### `colcon build`
+### `colcon build`
 
 
 
