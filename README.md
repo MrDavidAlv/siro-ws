@@ -2,7 +2,7 @@
 
 
 <div id="header" align="center" style="text-align: center; white-space: nowrap">
-    <img src="/images/ros2.png" title="ros2" alt="ros2" width="300px"/>
+    <img src="/images/ros2.gif" title="ros2" alt="ros2" width="300px"/>
     <img src="/images/humble.png" title="humble" alt="humble" width="130px"/>
 </div>
 
