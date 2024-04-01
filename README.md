@@ -2,8 +2,8 @@
 
 
 <div id="header" align="center" style="text-align: center; white-space: nowrap">
-    <img src="/images/ros2.gif" title="ros2" alt="ros2" style="max-width: 60%; width: 100%; height: auto;"/>
-    <img src="/images/humble.png" title="humble" alt="humble" style="max-width: 60%; width: 100%; height: auto;"/>
+    <img src="/images/ros2.gif" title="ros2" alt="ros2" width="300px"/>
+    <img src="/images/humble.png" title="humble" alt="humble" width="150px"/>
 </div>
 
 
@@ -43,7 +43,7 @@ ROS 2 (Robot Operating System 2) es una plataforma de código abierto diseñada 
 
 
 <div id="header" align="center">
-    <img src="/images/arquitectura.png" alt="Descripción de la imagen" width="60%" max-width="800px">
+    <img src="/images/arquitectura.png" alt="Descripción de la imagen" width="60%" max-width="100%">
 </div>
 
 
