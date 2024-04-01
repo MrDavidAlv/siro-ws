@@ -1,12 +1,12 @@
 # 🎯PROYECTO ROS2 HUMBLE 🤖🚀🕹️
 
 
-<div id="header" align="center" style="align-items: center; white-space: nowrap; width: 100%">
-    <div align="center" style="display: inline; width: 50%">
-        <img src="/images/ros2.png" title="ros2" alt="ros2"/>
+<div id="header" align="center" style="align-items: center; white-space: nowrap">
+    <div align="center" style="align-items: center; display: inline;">
+        <img src="/images/ros2.png" title="ros2" alt="ros2" width="200px"
     </div>
-    <div align="center" style="align-items: center; display: inline; width: 50%">
-        <img src="/images/humble.png" title="humble" alt="humble"/>
+    <div align="center" style="align-items: center; display: inline;">
+        <img src="/images/humble.png" title="humble" alt="humble" width="1500px"/>
     </div>
 </div>
 
