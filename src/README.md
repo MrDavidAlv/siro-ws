@@ -1,12 +1,15 @@
 ## PAQUETES EN ROS2
-
+<div id="header" align="center">
+    <img src="/images/packages.png" alt="paquetes" width="60%" max-width="800px">
+</div>
 En ROS 2, los paquetes para C++ se pueden crear utilizando la herramienta `ament_cmake`, que es una extensión de CMake diseñada específicamente para el desarrollo de software en ROS 2. Por otro lado, los paquetes para Python se pueden crear utilizando `ament_python`, que es una extensión de setuptools diseñada para el mismo propósito. Ambas herramientas permiten a los desarrolladores gestionar las dependencias, compilar el código y generar los artefactos necesarios para la ejecución en entornos ROS 2.
-
 
 
 ### 📦 Paquetes en C++:
 Para crear paquetes en C++ en ROS 2, se utiliza la herramienta ament_cmake. Esta herramienta proporciona una estructura de directorios estándar y un conjunto de macros de CMake que facilitan la compilación y la gestión de dependencias. Aquí hay un resumen de los pasos comunes para crear un paquete en C++ en ROS 2:
-
+<div id="header" align="center">
+    <img src="/images/ament_cmake.png" alt="ament_cmake" width="60%" max-width="800px">
+</div>
 
 1. `Creación del paquete`: Puedes crear un nuevo paquete utilizando el comando `ros2 pkg create <package_name> --build-type ament_cmake`. Esto creará una estructura de directorios estándar para tu paquete, incluyendo archivos de compilación y configuración necesarios.
 
@@ -26,6 +29,10 @@ Para crear paquetes en C++ en ROS 2, se utiliza la herramienta ament_cmake. Esta
 
 ### 📦 Paquetes en Python:
 Para crear paquetes en Python en ROS 2, se utiliza la herramienta `ament_python`, que es una extensión de `setuptools` adaptada para el entorno de ROS 2. Aquí hay un resumen de los pasos comunes para crear un paquete en Python en ROS 2:
+
+<div id="header" align="center">
+    <img src="/images/ament_python.png" alt="ament_python" width="60%" max-width="800px">
+</div>
 
 1. `Creación del paquete`: Al igual que con los paquetes en C++, puedes crear un nuevo paquete utilizando el comando `ros2 pkg create <package_name> --build-type ament_python`.
 
