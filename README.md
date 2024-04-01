@@ -2,11 +2,8 @@
 
 
 <div id="header" align="center" style="align-items: center; white-space: nowrap">
-    <div align="center" style="align-items: center; display: inline;">
-        <img src="/images/ros2.png" title="ros2" alt="ros2" width="200px"
-    </div>
-    <div align="center" style="align-items: center; display: inline;">
-        <img src="/images/humble.png" title="humble" alt="humble" width="1500px"/>
+    <img src="/images/ros2.png" title="ros2" alt="ros2" width="200px"/>
+    <img src="/images/humble.png" title="humble" alt="humble" width="150px"/>
     </div>
 </div>
 
