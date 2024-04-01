@@ -1,9 +1,13 @@
 # 🎯PROYECTO ROS2 HUMBLE 🤖🚀🕹️
 
 
-<div id="header" align="center" style="text-align: center; white-space: nowrap">
+<!--div id="header" align="center" style="text-align: center; white-space: nowrap">
     <img src="/images/ros2.gif" title="ros2" alt="ros2" width="300px"/>
     <img src="/images/humble.png" title="humble" alt="humble" width="150px"/>
+</div-->
+
+<div id="header" align="center">
+    <img src="/images/ros-image2.png" alt="ros humble" width="60%" max-width="100%">
 </div>
 
 
@@ -29,20 +33,32 @@ ROS 2 (Robot Operating System 2) es una plataforma de código abierto diseñada 
 ### `colcon build`
 
 
-Al compilar se crean 2 direcorios nuevos
+Al compilar se crean 3 direcorios nuevos
+```
+    \build
+    \install
+    \log
+```
 
+4. Actualizar las fuentes compiladas 
+
+### `source install/setup.bash`
+
+
+Realizar el paso 3 y 4 cada vez que se realice un cambio
 
 ## [`👉 Crea paquetes en ROS2`](./src/)
 
-## [`👉 Simulador Turtlesim`](./turtlesim/)
+--
 
 ## Arquitectura ROS2
 
 
 <div id="header" align="center">
-    <img src="/images/arquitectura.png" alt="Descripción de la imagen" width="60%" max-width="100%">
+    <img src="/images/arquitectura.png" alt="Descripción de la imagen" width="50%" max-width="100%">
 </div>
 
+## [`👉 Simulador Turtlesim`](./turtlesim/)
 
 
 
