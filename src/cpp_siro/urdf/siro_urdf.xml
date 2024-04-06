@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<robot name="siro">
+
+  <!-- Cuerpo principal del robot -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.5 0.5 0.2"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Ruedas -->
+  <link name="wheel1">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="wheel2">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="wheel3">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="wheel4">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Conjunto de ruedas -->
+  <joint name="joint_wheel1" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel1"/>
+    <origin xyz="0.25 0.25 0.05"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="joint_wheel2" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel2"/>
+    <origin xyz="0.25 -0.25 0.05"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="joint_wheel3" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel3"/>
+    <origin xyz="-0.25 0.25 0.05"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="joint_wheel4" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel4"/>
+    <origin xyz="-0.25 -0.25 0.05"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+</robot>

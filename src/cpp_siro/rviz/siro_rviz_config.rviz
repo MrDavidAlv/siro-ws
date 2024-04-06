@@ -1,0 +1,27 @@
+rviz:
+  perspective:
+    pose:
+      position: {x: -3.1999998092651367, y: 1.600000023841858, z: 3.3000001907348633}
+      orientation: {x: 0.00852517388087511, y: 0.6861420121190085, z: 0.13324999821186066, w: 0.7074000835418701}
+    fov: 1.0122909545898438
+  displays:
+    - name: RobotModel
+      enabled: true
+      type: rviz2/RobotModel
+      topic: /robot_description
+      update_rate: 10
+    - name: JointState
+      enabled: true
+      type: rviz2/JointState
+      topic: /joint_states
+      update_rate: 10
+    - name: TF
+      enabled: true
+      type: rviz2/TF
+      update_rate: 10
+    - name: Grid
+      enabled: true
+      type: rviz2/Grid
+      color: {r: 0.8941176533699036, g: 0.8941176533699036, b: 0.8941176533699036, a: 1}
+      cell_count: 20
+      plane: XY
