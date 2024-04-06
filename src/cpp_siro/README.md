@@ -30,16 +30,16 @@ Aquí encontramos varios documentos y directorios.
 
 2. `CMakeLists.txt`: Este archivo es parte de la configuración de CMake y se utiliza para especificar cómo se debe compilar el paquete. En este archivo se definen las dependencias, se configuran las opciones de compilación y se establecen los objetivos de construcción para el paquete. `ament_cmake` proporciona macros específicas de ROS 2 para facilitar este proceso.
 
-    Configurar la versión y el nombre del paquete.
+Configurar la versión y el nombre del paquete.
 
-```
+```cmake
     cmake_minimum_required(VERSION 3.5)
     project(cpp_siro)
 ```
 
-    Especificar la versión de C++
+Especificar la versión de C++
 
-```
+```cmake
         # Default to C++14
         if(NOT CMAKE_CXX_STANDARD)
             set(CMAKE_CXX_STANDARD 14)
@@ -47,30 +47,27 @@ Aquí encontramos varios documentos y directorios.
 ```
 
 
-    Especificar dependencias del paquete `ament_cmake`, `rclcpp` y `std_msgs`
+Especificar dependencias del paquete `ament_cmake`, `rclcpp` y `std_msgs`
 
+Cramos los nodos como ejecutables.
 
-    Cramos los nodos como ejecutables.
-
-```
+```cmake
         # Agrega el ejecutable del nodo.
         add_executable(siro_node_suscriptor src/siro_node_suscriptor.cpp)
         add_executable(siro_node_publicador src/siro_node_publicador.cpp)
 ```
 
+Instalar las dependencias de los nodos.
 
-    Instalar las dependencias de los nodos.
-
-```
+```cmake
         # Especifica las dependencias para el ejecutable.
         ament_target_dependencies(siro_node_suscriptor rclcpp std_msgs)
         ament_target_dependencies(siro_node_publicador rclcpp std_msgs)
 ```
 
+Instalar los nodos.
 
-    Instalar los nodos.
-
-```
+```cmake
         # Instala el ejecutable.
         install(TARGETS
             siro_node_suscriptor
@@ -80,9 +77,9 @@ Aquí encontramos varios documentos y directorios.
 ```
 
 
-    Creación de un directorio `/launch` para crear lanzaderas y compilacion.
+Creación de un directorio `/launch` para crear lanzaderas y compilacion.
 
-```
+```cmake
         # Instala los scripts y los recursos.
         install(DIRECTORY
             launch
