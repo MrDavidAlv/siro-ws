@@ -5,7 +5,7 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <box size="0.5 0.5 0.2"/>
+        <box size="0.7 0.4 0.2"/>
       </geometry>
     </visual>
   </link>
@@ -14,32 +14,55 @@
   <link name="wheel1">
     <visual>
       <geometry>
-        <cylinder radius="0.1" length="0.05"/>
+        <cylinder radius="0.1" length="0.1"/>
       </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
     </visual>
   </link>
 
   <link name="wheel2">
     <visual>
       <geometry>
-        <cylinder radius="0.1" length="0.05"/>
+        <cylinder radius="0.1" length="0.1"/>
       </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
     </visual>
   </link>
 
   <link name="wheel3">
     <visual>
       <geometry>
-        <cylinder radius="0.1" length="0.05"/>
+        <cylinder radius="0.1" length="0.1"/>
       </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
     </visual>
   </link>
 
   <link name="wheel4">
     <visual>
       <geometry>
-        <cylinder radius="0.1" length="0.05"/>
+        <cylinder radius="0.1" length="0.1"/>
       </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="lidar">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.1"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
     </visual>
   </link>
 
@@ -47,28 +70,35 @@
   <joint name="joint_wheel1" type="continuous">
     <parent link="base_link"/>
     <child link="wheel1"/>
-    <origin xyz="0.25 0.25 0.05"/>
+    <origin rpy="1.5708 0 0"  xyz="0.25 0.25 -0.07"/>
     <axis xyz="0 0 1"/>
   </joint>
 
   <joint name="joint_wheel2" type="continuous">
     <parent link="base_link"/>
     <child link="wheel2"/>
-    <origin xyz="0.25 -0.25 0.05"/>
+    <origin rpy="1.5708 0 0"  xyz="0.25 -0.25 -0.07"/>
     <axis xyz="0 0 1"/>
   </joint>
 
   <joint name="joint_wheel3" type="continuous">
     <parent link="base_link"/>
     <child link="wheel3"/>
-    <origin xyz="-0.25 0.25 0.05"/>
+    <origin rpy="1.5708 0 0"   xyz="-0.25 0.25 -0.07"/>
     <axis xyz="0 0 1"/>
   </joint>
 
   <joint name="joint_wheel4" type="continuous">
     <parent link="base_link"/>
     <child link="wheel4"/>
-    <origin xyz="-0.25 -0.25 0.05"/>
+    <origin rpy="1.5708 0 0" xyz="-0.25 -0.25 -0.07"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="joint_lidar" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <origin rpy="0 0 0" xyz="0.2 0 0.15"/>
     <axis xyz="0 0 1"/>
   </joint>
 

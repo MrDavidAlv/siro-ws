@@ -1,11 +1,10 @@
 import launch
 import launch_ros.actions
 import os
-from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     # Ruta al directorio donde se encuentra el paquete cpp_siro
-    package_dir = '/home/axioma/siro-ws/src/cpp_siro'
+    package_dir = '/home/jj/siro_ws/src/cpp_siro'
 
     # Ruta al archivo URDF
     urdf_file = os.path.join(package_dir, 'urdf', 'siro_urdf.xml')
@@ -20,7 +19,7 @@ def generate_launch_description():
     rviz2_node = launch_ros.actions.Node(
         package="rviz2",
         executable="rviz2",
-        arguments=["-d", os.path.join(package_dir, 'rviz', 'siro_rviz_config.rviz')],
+        arguments=["-d", os.path.join(package_dir, 'rviz', 'default.rviz')],
     )
 
     # Argumentos para el nodo que carga el URDF
