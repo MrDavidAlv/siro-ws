@@ -4,7 +4,7 @@ import os
 
 def generate_launch_description():
     # Ruta al directorio donde se encuentra el paquete cpp_siro
-    package_dir = '/home/jj/siro_ws/src/cpp_siro'
+    package_dir = '/home/jj/siro-ws/src/cpp_siro'
 
     # Ruta al archivo URDF
     urdf_file = os.path.join(package_dir, 'urdf', 'siro_urdf.xml')
