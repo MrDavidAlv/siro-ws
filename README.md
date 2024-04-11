@@ -62,6 +62,78 @@ En resumen, la arquitectura de ROS2 se caracteriza por su modularidad, su sistem
 <br>
 
 #### NODOS
+Los nodos son bloques de código(Clases), se encargan de partes especificas de las actividades del robot, estos se van a enlazar mediante topicos, servicios u acciones. Basicamente nos ayudan a crear un sistema modular que se pueda modificar facilmente y comunicar.
+
+##### Ejemplo de nodo
+Usaremos el paquete turtlesim que puedes instalar [`aquí`](./turtlesim/README.md).
+```bash
+ros2 run turtlesim turtlesim_node
+```
+En este caso lanzamos el nodo que mediante rqt lanza una interfaz gráfica con una tortuga en unas coordenadas especificas
+
+En una nueva consola ejecutamos un segundo nodo
+```bash
+ros2 run turtlesim turtle_teleop_key
+```
+Podemos visualizar los nodos en ejecución con el comando 
+```bash
+ros2 node list
+```
+Lo cual nos mostrara que hay dos nodos en ejecución
+```
+/teleop_turtle
+/turtlesim
+```
+
+Podemos cambiar los parametros y argumentos en los nodos. Por ejemplo cambiar el nombre del nodo `turtlesim` a `myturtle`, para ello bamos a abrir una nueva consola y ejecutas
+```bash
+ros2 run turtlesim turtlesim_node --ros-args --remap __node:=myturtle
+```
+Visualizamos nuevamente los nodos en ejecucón
+```bash
+ros2 node list
+```
+En este caso nos aparecen tres nodos en ejecución
+```
+/myturtle
+/teleop_turtle
+/turtlesim
+```
+**Información de un nodo**:  A veces se hace nesario conocer la información de un nodo para ver las suscripciones, que está publicando, servicios clientes, servicios servers y las acciones. Y podemos ver la información de esta manera.
+```
+ros2 node info /turtlesim
+```
+En este caso vemos la información del nodo `/turtlesim`
+```
+/turtlesim
+  Subscribers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /turtle1/cmd_vel: geometry_msgs/msg/Twist
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /turtle1/color_sensor: turtlesim/msg/Color
+    /turtle1/pose: turtlesim/msg/Pose
+  Service Servers:
+    /clear: std_srvs/srv/Empty
+    /kill: turtlesim/srv/Kill
+    /reset: std_srvs/srv/Empty
+    /spawn: turtlesim/srv/Spawn
+    /turtle1/set_pen: turtlesim/srv/SetPen
+    /turtle1/teleport_absolute: turtlesim/srv/TeleportAbsolute
+    /turtle1/teleport_relative: turtlesim/srv/TeleportRelative
+    /turtlesim/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /turtlesim/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /turtlesim/get_parameters: rcl_interfaces/srv/GetParameters
+    /turtlesim/list_parameters: rcl_interfaces/srv/ListParameters
+    /turtlesim/set_parameters: rcl_interfaces/srv/SetParameters
+    /turtlesim/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+    /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+  Action Clients:
+```
 
 #### TOPICOS
 
