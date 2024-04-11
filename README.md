@@ -59,6 +59,43 @@ En resumen, la arquitectura de ROS2 se caracteriza por su modularidad, su sistem
     <img src="/images/arquitectura.png" alt="Descripción de la imagen" width="50%" max-width="100%">
 </div>
 
+<br>
+
+#### NODOS
+
+#### TOPICOS
+
+#### SERVICIOS
+
+#### ACCIONES
+
+Nodes
+
+Discovery
+
+Interfaces
+
+Topics
+
+Services
+
+Actions
+
+Parameters
+
+Introspection with command line tools
+
+Launch
+
+Client libraries
+
+
+## [`👉 Instalación 🛠️`](./INSTALL.md)
+
+<br>
+<br>
+<br>
+
 ## [`👉 Simulador Turtlesim`](./turtlesim/)
 
 
