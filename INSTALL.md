@@ -7,12 +7,12 @@ Para instalar ROS 2 en tu sistema utilizando paquetes Debian o binarios, sigue l
 
 ## Instalación para paquetes Debian
 
-> **Advertencia**: Instalar en Ubuntu 22.04 LST.
+> **Advertencia**: Instalar en Ubuntu 22.04 LST o versiones LTS superiores.
 
 #### Configuración de fuentes
 
 1. Configuración regional compatible con UTF-8
-```
+```bash
 locale  # check for UTF-8
 
 sudo apt update && sudo apt install locales
@@ -24,46 +24,46 @@ locale  # verify settings
 ```
  
  2. Configurar el repositorio de Ubuntu Universe esté habilitado.
-```
+```bash
 sudo apt install software-properties-common
 sudo add-apt-repository universe
 ```
 
  3. Agregue la clave GPG ROS2.
-```
+```bash
 sudo apt update && sudo apt install curl -y
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 ```
 
  4. Agregar el repositorio a la lista de fuentes.
-```
+```bash
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 ```
 
 #### Instalar paquetes de ROS2
 5. Actualizar cache.
-```
+```bash
 sudo apt update
 ```
 
 6. Actualizar el sistema.
-```
+```bash
 sudo apt upgrade
 ```
 
 7. Intalación de ROS2.
 
 > **Version Desktop**: Instalara todos los paquetes de ROS2, RVIZ2, ejemplos y tutoriales.
-```
+```bash
 sudo apt install ros-humble-desktop
 ```
 > **Version base**: Bibliotecas de comunicación, paquetes de mensajes, herramientas de línea de comandos.
-```
+```bash
 sudo apt install ros-humble-ros-base
 ```
 
 8. Herramientas de desarrollo.
-```
+```bash
 sudo apt install ros-dev-tools
 ```
 
@@ -71,25 +71,23 @@ sudo apt install ros-dev-tools
 
 ### Probar instalación 
 1. Actualizamos cache.
-```
+```bash
 sudo apt update
 ```
 
 2. Actualizamos el sistema operativo.
-```
+```bash
 sudo apt upgrade
 ```
 
 3. Ahora en una terminal ejecute el nodo publicador de prueba. 
-
-```
+```bash
 source /opt/ros/humble/setup.bash
 ros2 run demo_nodes_cpp talker
 ```
 
 4. Ahora en una terminal ejecute el nodo suscriptor de prueba. 
-
-```
+```bash
 source /opt/ros/humble/setup.bash
 ros2 run demo_nodes_cpp listener
 ```

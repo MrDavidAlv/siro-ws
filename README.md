@@ -56,7 +56,7 @@ En resumen, la arquitectura de ROS2 se caracteriza por su modularidad, su sistem
 
 
 <div id="header" align="center">
-    <img src="/images/arquitectura.png" alt="Descripción de la imagen" width="50%" max-width="100%">
+    <img src="/images/arquitectura.png" alt="Arquitectura de ros" width="50%" max-width="100%">
 </div>
 
 <br>
@@ -100,7 +100,7 @@ En este caso nos aparecen tres nodos en ejecución
 /turtlesim
 ```
 **Información de un nodo**:  A veces se hace nesario conocer la información de un nodo para ver las suscripciones, que está publicando, servicios clientes, servicios servers y las acciones. Y podemos ver la información de esta manera.
-```
+```bash
 ros2 node info /turtlesim
 ```
 En este caso vemos la información del nodo `/turtlesim`
@@ -135,9 +135,55 @@ En este caso vemos la información del nodo `/turtlesim`
   Action Clients:
 ```
 
+<br>
+
 #### TOPICOS
+Son canales en los cuales unos nodos puclican información y otros se suscriben para recibirla. La relación para la comunicación puede ser de *muchos a uno*(one to many), *muchos a uno*(many to one) y *muchos a muchos*(many to many).
+
+Para ver los topicos de los nodos `turtlesim` y `teleop_key` que previamente deben estar ejecución usamos la siguiente instrucción
+
+```bash
+ros2 topic list
+```
+
+Esto nos indicara que deben estar ejecutandose estos topicos.
+```
+/parameter_events
+/rosout
+/turtle1/cmd_vel
+/turtle1/color_sensor
+/turtle1/pose
+```
+
+> **Nota**: Los topicos `/parameter_events` y `/rosout` son de la ejecución de ROS2 y no son de los paquetes y nodos por lo cual siempre van a estar presentes.
+
+Otra herramienta util para el desarrollo de los topicos con ROS2 en la de saber el tipo de del topico.
+```bash
+ros2 topic list -t
+```
+Y nos muestra la siguiente información
+```
+/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/rosout [rcl_interfaces/msg/Log]
+/turtle1/cmd_vel [geometry_msgs/msg/Twist]
+/turtle1/color_sensor [turtlesim/msg/Color]
+/turtle1/pose [turtlesim/msg/Pose]
+```
+
+Durante la instalación descargo una herramienta util para visualizar la conexión de los nodos, topicos, servicios y acciones de nuesto proyecto. Para visualizar la arquitectura del proyecto podemos usar el comando.
+```bash
+rqt_graph
+```
+Y nos habilita la venta para ver el rqt_graph
+<div id="header" align="center">
+    <img src="/images/rqt_graph.PNG" alt="rqt_graph" width="50%" max-width="100%">
+</div>
+
+<br>
 
 #### SERVICIOS
+
+<br>
 
 #### ACCIONES
 
