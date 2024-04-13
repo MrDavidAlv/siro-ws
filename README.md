@@ -62,20 +62,20 @@ En resumen, la arquitectura de ROS2 se caracteriza por su modularidad, su sistem
 <br>
 
 #### NODOS
-Los nodos son bloques de código(Clases), se encargan de partes especificas de las actividades del robot, estos se van a enlazar mediante topicos, servicios u acciones. Basicamente nos ayudan a crear un sistema modular que se pueda modificar facilmente y comunicar.
+Los nodos son bloques de código (clases) que se encargan de partes específicas de las actividades del robot. Estos se van a enlazar mediante tópicos, servicios o acciones. Básicamente nos ayudan a crear un sistema modular que se pueda modificar fácilmente y comunicar.
 
 ##### Ejemplo de nodo
 Usaremos el paquete turtlesim que puedes instalar [`aquí`](./turtlesim/README.md).
 ```bash
 ros2 run turtlesim turtlesim_node
 ```
-En este caso lanzamos el nodo que mediante rqt lanza una interfaz gráfica con una tortuga en unas coordenadas especificas
+En este caso lanzamos el nodo que mediante rqt lanza una interfaz gráfica con una tortuga en unas coordenadas especificas.
 
-En una nueva consola ejecutamos un segundo nodo
+En una nueva consola ejecutamos un segundo nodo.
 ```bash
 ros2 run turtlesim turtle_teleop_key
 ```
-Podemos visualizar los nodos en ejecución con el comando 
+Podemos visualizar los nodos en ejecución con el comando:
 ```bash
 ros2 node list
 ```
@@ -85,7 +85,7 @@ Lo cual nos mostrara que hay dos nodos en ejecución
 /turtlesim
 ```
 
-Podemos cambiar los parametros y argumentos en los nodos. Por ejemplo cambiar el nombre del nodo `turtlesim` a `myturtle`, para ello bamos a abrir una nueva consola y ejecutas
+Podemos cambiar los parámetros y argumentos en los nodos. Por ejemplo, cambiar el nombre del nodo `turtlesim` a `myturtle`, para ello vamos a abrir una nueva consola y ejecutar
 ```bash
 ros2 run turtlesim turtlesim_node --ros-args --remap __node:=myturtle
 ```
@@ -99,7 +99,7 @@ En este caso nos aparecen tres nodos en ejecución
 /teleop_turtle
 /turtlesim
 ```
-**Información de un nodo**:  A veces se hace nesario conocer la información de un nodo para ver las suscripciones, que está publicando, servicios clientes, servicios servers y las acciones. Y podemos ver la información de esta manera.
+**Información de un nodo**:  A veces se hace necesario conocer la información de un nodo para ver las suscripciones, qué está publicando, los servicios clientes, los servicios servidores y las acciones. Podemos ver la información de esta manera.
 ```bash
 ros2 node info /turtlesim
 ```
@@ -138,7 +138,7 @@ En este caso vemos la información del nodo `/turtlesim`
 <br>
 
 #### TOPICOS
-Son canales en los cuales unos nodos puclican información y otros se suscriben para recibirla. La relación para la comunicación puede ser de *muchos a uno*(one to many), *muchos a uno*(many to one) y *muchos a muchos*(many to many).
+Son canales en los cuales unos nodos publican información y otros se suscriben para recibirla. La relación para la comunicación puede ser de  *muchos a uno*(one to many), *muchos a uno*(many to one) y *muchos a muchos*(many to many).
 
 Para ver los topicos de los nodos `turtlesim` y `teleop_key` que previamente deben estar ejecución usamos la siguiente instrucción
 
@@ -146,7 +146,7 @@ Para ver los topicos de los nodos `turtlesim` y `teleop_key` que previamente deb
 ros2 topic list
 ```
 
-Esto nos indicara que deben estar ejecutandose estos topicos.
+Esto nos indica que deben estar ejecutándose estos tópicos.
 ```
 /parameter_events
 /rosout
@@ -155,13 +155,13 @@ Esto nos indicara que deben estar ejecutandose estos topicos.
 /turtle1/pose
 ```
 
-> **Nota**: Los topicos `/parameter_events` y `/rosout` son de la ejecución de ROS2 y no son de los paquetes y nodos por lo cual siempre van a estar presentes.
+> **Nota**: Los tópicos `/parameter_events` y `/rosout` son de la ejecución de ROS2 y no pertenecen a los paquetes y nodos en ejecución, por lo tanto, siempre van a estar presentes.
 
-Otra herramienta util para el desarrollo de los topicos con ROS2 en la de saber el tipo de del topico.
+Otra herramienta útil para el desarrollo de los tópicos con ROS2 es saber el tipo del tópico.
 ```bash
 ros2 topic list -t
 ```
-Y nos muestra la siguiente información
+Y nos muestra la siguiente información.
 ```
 /parameter_events [rcl_interfaces/msg/ParameterEvent]
 /rosout [rcl_interfaces/msg/Log]
@@ -170,11 +170,11 @@ Y nos muestra la siguiente información
 /turtle1/pose [turtlesim/msg/Pose]
 ```
 
-Durante la instalación descargo una herramienta util para visualizar la conexión de los nodos, topicos, servicios y acciones de nuesto proyecto. Para visualizar la arquitectura del proyecto podemos usar el comando.
+Durante la instalación, se descargó una herramienta útil para visualizar la conexión de los nodos, tópicos, servicios y acciones de nuestro proyecto. Para visualizar la arquitectura del proyecto, podemos usar el comando.
 ```bash
 rqt_graph
 ```
-Y nos habilita la venta para ver el rqt_graph
+Y nos habilita la ventana para ver el **rqt_graph**.
 <div id="header" align="center">
     <img src="/images/rqt_graph.PNG" alt="rqt_graph" width="50%" max-width="100%">
 </div>
@@ -186,6 +186,8 @@ Y nos habilita la venta para ver el rqt_graph
 <br>
 
 #### ACCIONES
+
+
 
 Nodes
 
