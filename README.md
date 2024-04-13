@@ -64,28 +64,35 @@ En resumen, la arquitectura de ROS2 se caracteriza por su modularidad, su sistem
 #### NODOS
 Los nodos son bloques de código (clases) que se encargan de partes específicas de las actividades del robot. Estos se van a enlazar mediante tópicos, servicios o acciones. Básicamente nos ayudan a crear un sistema modular que se pueda modificar fácilmente y comunicar.
 
-##### Ejemplo de nodo
+##### Comandos básicos
 Usaremos el paquete turtlesim que puedes instalar [`aquí`](./turtlesim/README.md).
+
+1. Ejecutar un nodo.
 ```bash
 ros2 run turtlesim turtlesim_node
 ```
 En este caso lanzamos el nodo que mediante rqt lanza una interfaz gráfica con una tortuga en unas coordenadas especificas.
 
+<div id="header" align="center">
+    <img src="/images/turtlesim_node.png" alt="turtlesim_node" width="50%" max-width="100%">
+</div>
+
 En una nueva consola ejecutamos un segundo nodo.
 ```bash
 ros2 run turtlesim turtle_teleop_key
 ```
-Podemos visualizar los nodos en ejecución con el comando:
+2. Para visualizar los nodos en ejecución:
 ```bash
 ros2 node list
 ```
 Lo cual nos mostrara que hay dos nodos en ejecución
+
 ```
 /teleop_turtle
 /turtlesim
 ```
 
-Podemos cambiar los parámetros y argumentos en los nodos. Por ejemplo, cambiar el nombre del nodo `turtlesim` a `myturtle`, para ello vamos a abrir una nueva consola y ejecutar
+3. Podemos cambiar los parámetros y argumentos en los nodos. Por ejemplo, cambiar el nombre del nodo `turtlesim` a `myturtle`, para ello vamos a abrir una nueva consola y ejecutar
 ```bash
 ros2 run turtlesim turtlesim_node --ros-args --remap __node:=myturtle
 ```
@@ -99,7 +106,7 @@ En este caso nos aparecen tres nodos en ejecución
 /teleop_turtle
 /turtlesim
 ```
-**Información de un nodo**:  A veces se hace necesario conocer la información de un nodo para ver las suscripciones, qué está publicando, los servicios clientes, los servicios servidores y las acciones. Podemos ver la información de esta manera.
+4. **Información de un nodo**:  A veces se hace necesario conocer la información de un nodo para ver las suscripciones, qué está publicando, los servicios clientes, los servicios servidores y las acciones. Podemos ver la información de esta manera.
 ```bash
 ros2 node info /turtlesim
 ```
@@ -140,7 +147,29 @@ En este caso vemos la información del nodo `/turtlesim`
 #### TOPICOS
 Son canales en los cuales unos nodos publican información y otros se suscriben para recibirla. La relación para la comunicación puede ser de  *muchos a uno*(one to many), *muchos a uno*(many to one) y *muchos a muchos*(many to many).
 
-Para ver los topicos de los nodos `turtlesim` y `teleop_key` que previamente deben estar ejecución usamos la siguiente instrucción
+##### Caraterísticas de los tópicos
+- **Definición de Tópicos**:
+Canales de comunicación identificados por un nombre único.
+- **Tipos de Mensajes**:
+Los mensajes transmitidos a través de los tópicos pueden ser de tipos estándar (std_msgs) o personalizados.
+- **Publicación y Suscripción**:
+Los nodos pueden publicar o suscribirse a un tópico para enviar o recibir mensajes.
+- **Comunicación Desacoplada**:
+La comunicación se realiza de forma asíncrona y desacoplada entre nodos.
+- **Calidad de Servicio (QoS)**:
+Configuraciones de QoS permiten ajustar la durabilidad, fiabilidad, latencia, entre otros aspectos de la comunicación.
+- **Jerarquía de Nombres de los Tópicos**:
+Los nombres de los tópicos pueden ser jerárquicos para organizar la información.
+- **Tópicos Privados**:
+Los nodos pueden usar tópicos privados para encapsular la comunicación dentro de un nodo o grupo de nodos.
+- **Herramientas para Trabajar con Tópicos**:
+Herramientas como `ros2 topic list` y `ros2 topic echo` permiten gestionar y monitorear los tópicos.
+
+En cuanto a los tipos de tópicos, no hay una clasificación específica de los tópicos en sí; más bien, los tópicos se definen por el tipo de mensajes que manejan y el propósito de los nodos que los utilizan.
+
+
+##### Comandos básicos
+1. Para ver los topicos de los nodos `turtlesim` y `teleop_key` que previamente deben estar ejecución usamos la siguiente instrucción
 
 ```bash
 ros2 topic list
@@ -157,7 +186,7 @@ Esto nos indica que deben estar ejecutándose estos tópicos.
 
 > **Nota**: Los tópicos `/parameter_events` y `/rosout` son de la ejecución de ROS2 y no pertenecen a los paquetes y nodos en ejecución, por lo tanto, siempre van a estar presentes.
 
-Otra herramienta útil para el desarrollo de los tópicos con ROS2 es saber el tipo del tópico.
+2. Otra herramienta útil para el desarrollo de los tópicos con ROS2 es saber el tipo de los tópicos.
 ```bash
 ros2 topic list -t
 ```
@@ -170,7 +199,7 @@ Y nos muestra la siguiente información.
 /turtle1/pose [turtlesim/msg/Pose]
 ```
 
-Durante la instalación, se descargó una herramienta útil para visualizar la conexión de los nodos, tópicos, servicios y acciones de nuestro proyecto. Para visualizar la arquitectura del proyecto, podemos usar el comando.
+3. Durante la instalación, se descargó una herramienta útil para visualizar la conexión de los nodos, tópicos, servicios y acciones de nuestro proyecto. Para visualizar la arquitectura del proyecto, podemos usar el comando.
 ```bash
 rqt_graph
 ```
@@ -178,6 +207,50 @@ Y nos habilita la ventana para ver el **rqt_graph**.
 <div id="header" align="center">
     <img src="/images/rqt_graph.PNG" alt="rqt_graph" width="50%" max-width="100%">
 </div>
+
+4. Para visualizar el flujo de información de un tópico `cmd_vel` usamos el siguiente comando.
+```bash
+ros2 topic echo  /turtle1/cmd_vel
+```
+Esto nos habilitará información enviada a travás del tópico `/turtle/cmd_vel`.
+
+```
+linear:
+  x: 2.0
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+---
+```
+
+5. Tambien podemos ver la información del tópico pose `pose`.
+```bash
+ros2 topic echo  /turtle1/pose
+```
+Nos imprimira la posición y ángulo de la tortuga.
+```
+x: 5.544444561004639
+y: 5.544444561004639
+theta: 0.0
+linear_velocity: 0.0
+angular_velocity: 0.0
+---
+```
+
+6. En el caso de querer ver la información de un tópico usamos:
+```bash
+ros2 topic info /turtle1/cmd_vel
+```
+
+Lo cual nos retorna el tipo de nodo, número de nodos suscritos y número de nodos publicando.
+```
+Type: geometry_msgs/msg/Twist
+Publisher count: 1
+Subscription count: 1
+```
 
 <br>
 
