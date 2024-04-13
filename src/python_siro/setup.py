@@ -24,6 +24,7 @@ setup(
             'siro_node_publicador = python_siro.siro_node_publicador:main',
             'star_turtle_controller = python_siro.star_turtle_controller:main',
             'turtle_follower = python_siro.turtle_follower:main',
+            'rendimientoPython = python_siro.rendimientoPython:main',
         ],
     },
 )

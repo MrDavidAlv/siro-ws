@@ -61,7 +61,7 @@ En resumen, la arquitectura de ROS2 se caracteriza por su modularidad, su sistem
 
 <br>
 
-#### NODOS
+### NODOS
 Los nodos son bloques de código (clases) que se encargan de partes específicas de las actividades del robot. Estos se van a enlazar mediante tópicos, servicios o acciones. Básicamente nos ayudan a crear un sistema modular que se pueda modificar fácilmente y comunicar.
 
 ##### Comandos básicos
@@ -144,7 +144,7 @@ En este caso vemos la información del nodo `/turtlesim`
 
 <br>
 
-#### TOPICOS
+### TOPICOS
 Son canales en los cuales unos nodos publican información y otros se suscriben para recibirla. La relación para la comunicación puede ser de  *muchos a uno*(one to many), *muchos a uno*(many to one) y *muchos a muchos*(many to many).
 
 ##### Caraterísticas de los tópicos
@@ -165,7 +165,222 @@ Los nodos pueden usar tópicos privados para encapsular la comunicación dentro 
 - **Herramientas para Trabajar con Tópicos**:
 Herramientas como `ros2 topic list` y `ros2 topic echo` permiten gestionar y monitorear los tópicos.
 
+
+##### Clasificación
+
 En cuanto a los tipos de tópicos, no hay una clasificación específica de los tópicos en sí; más bien, los tópicos se definen por el tipo de mensajes que manejan y el propósito de los nodos que los utilizan.
+
+1. **Tipos de mensajes estándar**:
+ROS 2 proporciona una variedad de tipos de mensajes estándar definidos en varios paquetes como `std_msgs`, `geometry_msgs`, `sensor_msgs`, entre otros. Algunos ejemplos de mensajes estándar son:
+
+  - **std_msgs**: Mensajes estándar.
+    * **std_msgs/String**: Un mensaje de texto simple.
+    * **std_msgs/Int32**: Un entero de 32 bits.
+    * **std_msgs/Float32**: Un número de punto flotante de 32 bits.
+
+
+  - **geometry_msgs**: Mensajes de geometría y movimiento.
+    * **geometry_msgs/Point**
+      - Representa un punto en un espacio tridimensional.
+      - Contiene tres coordenadas: `x`, `y` y `z`.
+      - *Ejemplo de uso*: Describir la posición de un objeto en un espacio 3D.
+      ```
+      geometry_msgs/Point {x: 1.0, y: 2.0, z: 3.0}
+      ```
+    
+    * **geometry_msgs/Quaternion**
+      - Representa una orientación en un espacio tridimensional utilizando un cuaternio.
+      - Contiene cuatro componentes: `x`, `y`, `z`, y `w`.
+      - *Ejemplo de uso*: Describir la orientación de un objeto en un espacio 3D.
+      ```
+      geometry_msgs/Quaternion {x: 0.0, y: 0.0, z: 0.0, w: 1.0}
+      ```
+
+    * **geometry_msgs/Pose**
+      - Representa la posición y la orientación de un objeto en un espacio tridimensional.
+      - Combina `Point` y `Quaternion`.
+      - *Ejemplo de uso*: Describir la pose de un robot o un objeto en un espacio 3D.
+      ```
+      geometry_msgs/Pose {position: {x: 1.0, y: 2.0, z: 3.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}
+      ```
+
+    * **geometry_msgs/Twist**
+      - Representa el movimiento lineal y angular de un objeto.
+      - *Contiene dos campos*: `linear` (un `Vector3` que describe la velocidad lineal) y `angular` (un `Vector3` que describe la velocidad angular).
+      - *Ejemplo de uso*: Describir la velocidad de un robot o un objeto en un espacio 3D.
+      ```
+      geometry_msgs/Twist {linear: {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.5}}
+      ```
+
+    * **geometry_msgs/PoseStamped**
+      - Similar a `Pose`, pero incluye un sello de tiempo (`header.stamp`) y un marco de referencia (`header.frame_id`).
+      - Combina `Point` y `Quaternion`.
+      - Se utiliza para describir la pose de un objeto en un determinado momento y marco de referencia.
+      ```
+      geometry_msgs/PoseStamped { header: {stamp: {sec: 0, nanosec: 0}, frame_id: "map"}, pose: {position: {x: 1.0, y: 2.0, z: 3.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}
+      ```
+    
+    * **geometry_msgs/Transform**
+      - Representa una transformación que consiste en una rotación (`rotation`, un `Quaternion`) y una traslación (`translation`, un `Vector3`).
+      - *Ejemplo de uso*: Describir cómo se transforma un objeto en relación con otro.
+      ```
+      geometry_msgs/Transform {translation: {x: 1.0, y: 2.0, z: 3.0}, rotation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}
+      ```
+
+    * **geometry_msgs/Wrench**
+      - Representa fuerzas lineales y torques angulares que actúan sobre un objeto, con campos `force` y `torque`, ambos de tipo `Vector3`.
+
+  - **sensor_msgs**: Mensajes relacionados con sensores.
+
+    * **sensor_msgs/LaserScan**
+      - Representa los datos de un escáner láser (LiDAR).
+      - Incluye información sobre el ángulo mínimo y máximo de escaneo, el rango mínimo y máximo de detección, el ángulo entre mediciones consecutivas, y una lista de distancias medidas (rangos).
+      - *Ejemplo de uso*: Para recibir datos de un sensor LiDAR en un robot móvil.
+      ```
+      sensor_msgs/LaserScan {
+        header: {stamp: {sec: 0, nanosec: 0}, frame_id: "base_laser"},
+        angle_min: -1.57,
+        angle_max: 1.57,
+        angle_increment: 0.01,
+        time_increment: 0.0,
+        scan_time: 0.0,
+        range_min: 0.1,
+        range_max: 10.0,
+        ranges: [0.5, 0.6, 0.7, ...]
+      }
+      ```
+
+    * **sensor_msgs/Imu**
+      - Representa datos de una unidad de medida inercial (IMU).
+      - Incluye datos de orientación (como cuaterniones), aceleración lineal y velocidad angular (tasa de giro).
+      - Ejemplo de uso: Para recibir datos de un IMU en un dron o robot móvil.
+      ```
+      sensor_msgs/Imu {
+        header: {stamp: {sec: 0, nanosec: 0}, frame_id: "imu_link"},
+        orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0},
+        orientation_covariance: [0.0, 0.0, 0.0, ...],
+        angular_velocity: {x: 0.1, y: -0.2, z: 0.3},
+        angular_velocity_covariance: [0.0, 0.0, 0.0, ...],
+        linear_acceleration: {x: 0.4, y: -0.5, z: 0.6},
+        linear_acceleration_covariance: [0.0, 0.0, 0.0, ...]
+      }
+      ```
+    * **sensor_msgs/CameraInfo**
+      - Proporciona información sobre la configuración de una cámara, como la matriz de la cámara, el tamaño de la imagen y los coeficientes de distorsión.
+      - *Ejemplo de uso*: Para enviar datos sobre la calibración de una cámara.
+      ```
+      sensor_msgs/CameraInfo {
+        header: {stamp: {sec: 0, nanosec: 0}, frame_id: "camera_frame"},
+        height: 720,
+        width: 1280,
+        distortion_model: "plumb_bob",
+        D: [0.1, -0.1, 0.0, 0.0, 0.0],
+        K: [1000.0, 0.0, 640.0, ...],
+        R: [1.0, 0.0, 0.0, ...],
+        P: [1000.0, 0.0, 640.0, ...],
+        binning_x: 1,
+        binning_y: 1,
+        roi: {x_offset: 0, y_offset: 0, height: 720, width: 1280, do_rectify: false}
+      }
+      ```
+    * **sensor_msgs/PointCloud2**
+      - Representa un conjunto de puntos tridimensionales (nube de puntos).
+      - Se utiliza para representar datos de escaneo de superficies u objetos en 3D, por ejemplo, de un sensor LiDAR o de una cámara de profundidad.
+      - *Ejemplo de uso*: Para enviar datos de una nube de puntos capturados por un sensor.
+      ```
+      sensor_msgs/PointCloud2 {
+        header: {stamp: {sec: 0, nanosec: 0}, frame_id: "base_link"},
+        height: 1,
+        width: 1000,
+        fields: [{name: "x", offset: 0, datatype: 7, ...}, ...],
+        point_step: 32,
+        row_step: 32000,
+        data: [...],
+        is_bigendian: false,
+        is_dense: true
+      }
+      ```
+
+  - **nav_msgs**: Mensajes relacionados con la navegación robótica.
+    * **nav_msgs/Odometry**
+      - Representa datos de odometría, que describen la posición y orientación actual de un robot, así como sus velocidades lineales y angulares.
+      - Incluye un `header` con un sello de tiempo y un marco de referencia (`frame_id`).
+      - Contiene una `PoseWithCovariance` (pose con información de incertidumbre) y una `TwistWithCovariance` (velocidad con información de incertidumbre).
+      ```
+      nav_msgs/Odometry {
+        header: {stamp: {sec: 0, nanosec: 0}, frame_id: "odom"},
+        child_frame_id: "base_link",
+        pose: {
+            pose: {position: {x: 1.0, y: 2.0, z: 0.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}},
+            covariance: [0.1, 0.0, 0.0, ...]
+        },
+        twist: {
+            twist: {linear: {x: 0.5, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.1}},
+            covariance: [0.1, 0.0, 0.0, ...]
+        }
+      }
+      ```
+
+    * **nav_msgs/Path**
+      - Representa un camino o trayectoria que un robot puede seguir para navegar a través de un espacio.
+      - Consiste en una lista de poses (`PoseStamped`) a lo largo de una trayectoria planificada.
+      - *Ejemplo de uso*: Para especificar una ruta de navegación para un robot.
+      ```
+      nav_msgs/Path {
+        header: {stamp: {sec: 0, nanosec: 0}, frame_id: "map"},
+        poses: [
+            {header: {stamp: {sec: 0, nanosec: 0}, frame_id: "map"},
+            pose: {position: {x: 1.0, y: 1.0, z: 0.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}},
+            {header: {stamp: {sec: 0, nanosec: 0}, frame_id: "map"},
+            pose: {position: {x: 2.0, y: 2.0, z: 0.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}
+            // ...
+        ]
+      }
+      ```
+
+    * **nav_msgs/OccupancyGrid**
+      - Representa un mapa de ocupación, que es una representación de un entorno en una cuadrícula bidimensional.
+      - Cada celda de la cuadrícula contiene un valor que indica si está libre, ocupada o desconocida.
+      - *Ejemplo de uso*: Para compartir un mapa de ocupación de un entorno con otros nodos o para planificar rutas.
+      ```
+      nav_msgs/OccupancyGrid {
+        header: {stamp: {sec: 0, nanosec: 0}, frame_id: "map"},
+        info: {
+            map_load_time: {sec: 0, nanosec: 0},
+            resolution: 0.05,
+            width: 100,
+            height: 100,
+            origin: {
+                position: {x: -2.5, y: -2.5, z: 0.0},
+                orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}
+            }
+        },
+        data: [0, 100, -1, ...] // Valores de ocupación para cada celda
+      }
+      ```
+
+    * **nav_msgs/MapMetaData**
+      - Proporciona metadatos sobre un mapa, como la resolución, el tamaño y la posición de la cuadrícula de ocupación.
+      - Se usa en conjunto con mensajes como `OccupancyGrid`.
+      ```
+      nav_msgs/MapMetaData {
+        map_load_time: {sec: 0, nanosec: 0},
+        resolution: 0.05,
+        width: 100,
+        height: 100,
+        origin: {
+            position: {x: -2.5, y: -2.5, z: 0.0},
+            orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}
+        }
+    }
+      ```
+2. **Tipos de mensajes personalizados**: Además de los tipos de mensajes estándar, puedes definir tus propios tipos de mensajes personalizados para adaptarte a las necesidades específicas de tu aplicación. Los mensajes personalizados se crean utilizando el lenguaje de definición de mensajes (IDL) de ROS 2.
+
+3. **Tipos de mensajes de servicios y acciones**: Además de los mensajes de tópicos, ROS 2 también tiene mensajes de servicios (srv) y acciones (action). Los servicios definen un tipo de solicitud y un tipo de respuesta, mientras que las acciones son una combinación de mensajes de objetivos, actualizaciones de estado y resultados.
+
+4. **Mensajes de paquetes de terceros**: Además de los paquetes estándar, existen otros paquetes de ROS 2 desarrollados por la comunidad que proporcionan más tipos de mensajes para diferentes aplicaciones, como robótica, automoción, drones, etc.
+
+
 
 
 ##### Comandos básicos
@@ -252,14 +467,66 @@ Publisher count: 1
 Subscription count: 1
 ```
 
+7. Ver la extructura de mensaje enviada en el tópico.
+```bash
+ros2 interface show geometry_msgs/msg/Twist
+```
+Retorna la extructura.
+```
+# This expresses velocity in free space broken into its linear and angular parts.
+
+Vector3  linear
+        float64 x
+        float64 y
+        float64 z
+Vector3  angular 
+        float64 x
+        float64 y
+        float64 z
+```
+8. Publicar información a través del tópico.
+```bash
+ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: -2.0, y: 0.0, z: 0.0},
+angular: {x: 0.0, y: 0.0, z: 1.5}}"
+```
+
+9. Publicar información a través del tópico con una determinada frecuencia.
+```bash
+ros2 topic pub --rate /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: -2.0, y: 0.0, z: 0.0},
+angular: {x: 0.0, y: 0.0, z: 1.5}}"
+```
+10. Para visualizar la frecuencia con la que un nodo publica.
+```bash
+ros2 topic hz /turtle1/cmd_vel
+```
+Retorna la velocidad de publicación.
+```
+average rate: 0.200
+        min: 4.999s max: 5.001s std dev: 0.00058s window: 2
+average rate: 0.200
+        min: 4.999s max: 5.001s std dev: 0.00070s window: 3
+average rate: 0.200
+        min: 4.999s max: 5.001s std dev: 0.00090s window: 4
+average rate: 0.200
+```
+
 <br>
 
-#### SERVICIOS
+### SERVICIOS
+
+<br>
+
+### PARAMETROS
 
 <br>
 
 #### ACCIONES
 
+---
+## REPASO DE MATRICES(Álgebra lineal)
+## REPASO ROBÓTICA(Quaterniones, Transformadas, ...)
+
+# Python es lento porque es interpretado
 
 
 Nodes
