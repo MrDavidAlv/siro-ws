@@ -526,10 +526,7 @@ Un servicio en ROS 2 tiene tres componentes principales:
 
 Este patrón de solicitud-respuesta es útil para cuando se necesita una interacción puntual y sincrónica entre nodos, en contraste con el modelo de publicación-suscripción que es más adecuado para comunicaciones asíncronas y continuas.
 
-
 ##### Clasificación
-
-
 
 1. **Servicios estándar**:
 En ROS2, hay varios servicios estándar que forman parte de los paquetes básicos de ROS2 y proporcionan funcionalidad común que es útil para muchas aplicaciones.
@@ -543,14 +540,13 @@ En ROS2, hay varios servicios estándar que forman parte de los paquetes básico
       * **GetParameterTypes**: Permite obtener los tipos de parámetros de un nodo.
       * **DescribeParameters**: Ofrece información sobre los parámetros de un nodo, incluidos los descriptores.
       * **ListParameters**: Proporciona una lista de los parámetros disponibles en un nodo.
+    - **Servicios de la biblioteca de imagen (image_transport)**:
+      * **GetTransportInfo**:  Servicio que proporciona información sobre los transportes de imágenes disponibles.
+    - **Servicios de transformación (tf2_msgs)**
+      * **LookupTransform**: Proporciona información sobre las transformaciones de coordenadas.
 
 2. **Servicios no estándar**:
-Además, hay muchos servicios no estándar definidos por los desarrolladores para sus aplicaciones específicas.
-    - **std_msgs**: Mensajes estándar.
-      * **std_msgs/String**: Un mensaje de texto simple.
-      * **std_msgs/Int32**: Un entero de 32 bits.
-      * **std_msgs/Float32**: Un número de punto flotante de 32 bits.
-
+Los servicios no estándar son aquellos definidos por los desarrolladores para aplicaciones específicas. Estos servicios pueden variar ampliamente según el ámbito de la aplicación, el paquete ROS 2 utilizado y los requerimientos del sistema. Los archivos .srv dentro de los paquetes describen los servicios específicos.
 
 
 ##### Comandos básicos
@@ -667,18 +663,26 @@ response:
 turtlesim.srv.Spawn_Response(name='tortuga_mario')
 ```
 
+<br>
+
+### ACCIONES
+
+En ROS 2, las acciones son un mecanismo de comunicación que permite a los nodos ejecutar tareas complejas de manera asíncrona, con retroalimentación sobre el progreso y la capacidad de cancelación. Las acciones son útiles cuando se necesita ejecutar operaciones que pueden tomar un tiempo considerable y requieren seguimiento del progreso.
 
 
+##### Clasificación
 
+1. **Simple**:
+Una acción simple consta de una sola meta que el cliente envía al servidor para su ejecución. El servidor procesa la meta y devuelve un resultado al cliente.
 
+2. **Compuesta**:
+Una acción compuesta puede involucrar múltiples pasos o sub-tareas. El cliente envía una serie de metas secuenciales al servidor, y este último ejecuta las tareas en orden y proporciona retroalimentación del progreso entre cada paso.
 
+##### Tipos
 
+1. **actionlib (acciones de acción simple)**:Este es el sistema de acciones original en ROS 1. Aunque no está incluido en la distribución principal de ROS 2, todavía es compatible a través del puente de compatibilidad ROS 1-ROS 2.
 
-
-
-
-
-
+1. **rcl_action (acciones de ROS 2)**:Es el sistema de acciones nativo de ROS 2 y proporciona una implementación más eficiente y flexible que actionlib. Incluye soporte tanto para acciones simples como compuestas.
 
 
 
@@ -691,9 +695,7 @@ turtlesim.srv.Spawn_Response(name='tortuga_mario')
 
 ### PARAMETROS
 
-<br>
 
-#### ACCIONES
 
 ---
 ## REPASO DE MATRICES(Álgebra lineal)
