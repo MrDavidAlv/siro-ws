@@ -392,11 +392,11 @@ ros2 topic list
 
 Esto nos indica que deben estar ejecutándose estos tópicos.
 ```
-/parameter_events
-/rosout
-/turtle1/cmd_vel
-/turtle1/color_sensor
-/turtle1/pose
+  /parameter_events
+  /rosout
+  /turtle1/cmd_vel
+  /turtle1/color_sensor
+  /turtle1/pose
 ```
 
 > **Nota**: Los tópicos `/parameter_events` y `/rosout` son de la ejecución de ROS2 y no pertenecen a los paquetes y nodos en ejecución, por lo tanto, siempre van a estar presentes.
@@ -407,11 +407,11 @@ ros2 topic list -t
 ```
 Y nos muestra la siguiente información.
 ```
-/parameter_events [rcl_interfaces/msg/ParameterEvent]
-/rosout [rcl_interfaces/msg/Log]
-/turtle1/cmd_vel [geometry_msgs/msg/Twist]
-/turtle1/color_sensor [turtlesim/msg/Color]
-/turtle1/pose [turtlesim/msg/Pose]
+  /parameter_events [rcl_interfaces/msg/ParameterEvent]
+  /rosout [rcl_interfaces/msg/Log]
+  /turtle1/cmd_vel [geometry_msgs/msg/Twist]
+  /turtle1/color_sensor [turtlesim/msg/Color]
+  /turtle1/pose [turtlesim/msg/Pose]
 ```
 
 3. Durante la instalación, se descargó una herramienta útil para visualizar la conexión de los nodos, tópicos, servicios y acciones de nuestro proyecto. Para visualizar la arquitectura del proyecto, podemos usar el comando.
@@ -430,15 +430,15 @@ ros2 topic echo  /turtle1/cmd_vel
 Esto nos habilitará información enviada a travás del tópico `/turtle/cmd_vel`.
 
 ```
-linear:
-  x: 2.0
-  y: 0.0
-  z: 0.0
-angular:
-  x: 0.0
-  y: 0.0
-  z: 0.0
----
+  linear:
+    x: 2.0
+    y: 0.0
+    z: 0.0
+  angular:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  ---
 ```
 
 5. Tambien podemos ver la información del tópico pose `pose`.
@@ -447,12 +447,12 @@ ros2 topic echo  /turtle1/pose
 ```
 Nos imprimira la posición y ángulo de la tortuga.
 ```
-x: 5.544444561004639
-y: 5.544444561004639
-theta: 0.0
-linear_velocity: 0.0
-angular_velocity: 0.0
----
+  x: 5.544444561004639
+  y: 5.544444561004639
+  theta: 0.0
+  linear_velocity: 0.0
+  angular_velocity: 0.0
+  ---
 ```
 
 6. En el caso de querer ver la información de un tópico usamos:
@@ -462,9 +462,9 @@ ros2 topic info /turtle1/cmd_vel
 
 Lo cual nos retorna el tipo de nodo, número de nodos suscritos y número de nodos publicando.
 ```
-Type: geometry_msgs/msg/Twist
-Publisher count: 1
-Subscription count: 1
+  Type: geometry_msgs/msg/Twist
+  Publisher count: 1
+  Subscription count: 1
 ```
 
 7. Ver la extructura de mensaje enviada en el tópico.
@@ -473,16 +473,16 @@ ros2 interface show geometry_msgs/msg/Twist
 ```
 Retorna la extructura.
 ```
-# This expresses velocity in free space broken into its linear and angular parts.
+  # This expresses velocity in free space broken into its linear and angular parts.
 
-Vector3  linear
-        float64 x
-        float64 y
-        float64 z
-Vector3  angular 
-        float64 x
-        float64 y
-        float64 z
+  Vector3  linear
+          float64 x
+          float64 y
+          float64 z
+  Vector3  angular 
+          float64 x
+          float64 y
+          float64 z
 ```
 8. Publicar información a través del tópico.
 ```bash
@@ -501,26 +501,201 @@ ros2 topic hz /turtle1/cmd_vel
 ```
 Retorna la velocidad de publicación.
 ```
-average rate: 0.200
-        min: 4.999s max: 5.001s std dev: 0.00058s window: 2
-average rate: 0.200
-        min: 4.999s max: 5.001s std dev: 0.00070s window: 3
-average rate: 0.200
-        min: 4.999s max: 5.001s std dev: 0.00090s window: 4
-average rate: 0.200
+  average rate: 0.200
+          min: 4.999s max: 5.001s std dev: 0.00058s window: 2
+  average rate: 0.200
+          min: 4.999s max: 5.001s std dev: 0.00070s window: 3
+  average rate: 0.200
+          min: 4.999s max: 5.001s std dev: 0.00090s window: 4
+  average rate: 0.200
 ```
 
 <br>
 
 ### SERVICIOS
 
+En ROS 2, los servicios son un mecanismo de comunicación que permite a los nodos intercambiar datos de forma *síncrona*. A través de los servicios, un nodo (el servidor) puede ofrecer una funcionalidad específica que otros nodos (los clientes) pueden solicitar. Cuando un cliente hace una solicitud a un servicio, espera una respuesta inmediata del servidor. Esto es diferente de los temas (o topics), que son de naturaleza *asíncrona*.
+
+Un servicio en ROS 2 tiene tres componentes principales:
+
+1. **Definición del servicio**: Similar a los mensajes, los servicios también tienen su propio tipo de definición, que incluye tanto los datos de la solicitud (request) como los datos de la respuesta (response).
+
+2. **Nodo servidor**: Es el nodo que implementa la funcionalidad del servicio. Escucha las solicitudes de los nodos clientes y, cuando recibe una, realiza la operación solicitada y responde con los datos apropiados.
+
+3. **Nodo cliente**: Es el nodo que solicita la funcionalidad proporcionada por el servidor. Realiza una llamada al servicio y espera una respuesta.
+
+Este patrón de solicitud-respuesta es útil para cuando se necesita una interacción puntual y sincrónica entre nodos, en contraste con el modelo de publicación-suscripción que es más adecuado para comunicaciones asíncronas y continuas.
+
+##### Clasificación
+
+1. **Servicios estándar**:
+En ROS2, hay varios servicios estándar que forman parte de los paquetes básicos de ROS2 y proporcionan funcionalidad común que es útil para muchas aplicaciones.
+    - **Servicios básicos (std_srvs)**:
+      * **Empty**: Un servicio sin datos de solicitud ni de respuesta.
+      * **SetBool**: Servicio que toma un valor booleano como solicitud y devuelve un valor booleano y una cadena de respuesta.
+      * **Trigger**: Servicio que no tiene datos de solicitud, pero devuelve un valor.
+    - **Servicios de interfaces del sistema (rcl_interfaces)**:
+      * **SetParameters**: Permite configurar los parámetros de un nodo.
+      * **GetParameters**: Permite obtener los parámetros de un nodo específico.
+      * **GetParameterTypes**: Permite obtener los tipos de parámetros de un nodo.
+      * **DescribeParameters**: Ofrece información sobre los parámetros de un nodo, incluidos los descriptores.
+      * **ListParameters**: Proporciona una lista de los parámetros disponibles en un nodo.
+    - **Servicios de la biblioteca de imagen (image_transport)**:
+      * **GetTransportInfo**:  Servicio que proporciona información sobre los transportes de imágenes disponibles.
+    - **Servicios de transformación (tf2_msgs)**
+      * **LookupTransform**: Proporciona información sobre las transformaciones de coordenadas.
+
+2. **Servicios no estándar**:
+Los servicios no estándar son aquellos definidos por los desarrolladores para aplicaciones específicas. Estos servicios pueden variar ampliamente según el ámbito de la aplicación, el paquete ROS 2 utilizado y los requerimientos del sistema. Los archivos .srv dentro de los paquetes describen los servicios específicos.
+
+
+##### Comandos básicos
+
+1. Listar servicios.
+```bash
+ros2 service list
+```
+Retorna
+```
+  /clear
+  /kill
+  /reset
+  /spawn
+  /teleop_turtle/describe_parameters
+  /teleop_turtle/get_parameter_types
+  /teleop_turtle/get_parameters
+  /teleop_turtle/list_parameters
+  /teleop_turtle/set_parameters
+  /teleop_turtle/set_parameters_atomically
+  /turtle1/set_pen
+  /turtle1/teleport_absolute
+  /turtle1/teleport_relative
+  /turtlesim/describe_parameters
+  /turtlesim/get_parameter_types
+  /turtlesim/get_parameters
+  /turtlesim/list_parameters
+  /turtlesim/set_parameters
+  /turtlesim/set_parameters_atomically
+```
+
+2. Ver el tipo de los servicios.
+```bash
+ros2 service list 
+```
+Retorna
+```
+  /clear [std_srvs/srv/Empty]
+  /kill [turtlesim/srv/Kill]
+  /reset [std_srvs/srv/Empty]
+  /spawn [turtlesim/srv/Spawn]
+  /teleop_turtle/describe_parameters [rcl_interfaces/srv/DescribeParameters]
+  /teleop_turtle/get_parameter_types [rcl_interfaces/srv/GetParameterTypes]
+  /teleop_turtle/get_parameters [rcl_interfaces/srv/GetParameters]
+  /teleop_turtle/list_parameters [rcl_interfaces/srv/ListParameters]
+  /teleop_turtle/set_parameters [rcl_interfaces/srv/SetParameters]
+  /teleop_turtle/set_parameters_atomically [rcl_interfaces/srv/SetParametersAtomically]
+  /turtle1/set_pen [turtlesim/srv/SetPen]
+  /turtle1/teleport_absolute [turtlesim/srv/TeleportAbsolute]
+  /turtle1/teleport_relative [turtlesim/srv/TeleportRelative]
+  /turtlesim/describe_parameters [rcl_interfaces/srv/DescribeParameters]
+  /turtlesim/get_parameter_types [rcl_interfaces/srv/GetParameterTypes]
+  /turtlesim/get_parameters [rcl_interfaces/srv/GetParameters]
+  /turtlesim/list_parameters [rcl_interfaces/srv/ListParameters]
+  /turtlesim/set_parameters [rcl_interfaces/srv/SetParameters]
+  /turtlesim/set_parameters_atomically [rcl_interfaces/srv/SetParametersAtomically]
+```
+
+3. Ver rl tipo de un servicio en específico.
+```bash
+ros2 service type /clear
+```
+El tipo de servicio es un servicio estandar vacio.
+```
+  std_srvs/srv/Empty
+```
+
+4. Visualizar si los servicios de algún tipo están ejecutándose.
+```bash
+ros2 servide find std_srvs/srv/Empty
+```
+En este caso tenemos dos servicios de este tipo.
+```
+  /clear
+  /reset
+```
+
+5. Para llamar i usar un servicio.
+```bash
+ros2 service call /clear std_srvs/srv/Empty
+```
+Retorna valores de la solicitud
+```
+  requester: making request: std_srvs.srv.Empty_Request()
+
+  response:
+  std_srvs.srv.Empty_Response()
+```
+
+6. Para ver la estructura del `request` y el `response`.
+```bash
+ros2 interface show turtlesim/srv/Spawn
+```
+Retorna
+```
+  float32 x
+  float32 y
+  float32 theta
+  string name # Optional.  A unique name will be created and returned if this is empty
+  ---
+  string name
+```
+
+
+7. Llamar el servicio Spawm
+```bash
+ros2 service call /spawn turtlesim/srv/Spawn "{x: 2, y: 2, theta: 0.2, name: 'tortuga_mario'}"
+```
+Retorna en consola y dibuja una segunda tortuga.
+```
+requester: making request: turtlesim.srv.Spawn_Request(x=2.0, y=2.0, theta=0.2, name='tortuga_mario')
+
+response:
+turtlesim.srv.Spawn_Response(name='tortuga_mario')
+```
+
+<br>
+
+### ACCIONES
+
+En ROS 2, las acciones son un mecanismo de comunicación que permite a los nodos ejecutar tareas complejas de manera asíncrona, con retroalimentación sobre el progreso y la capacidad de cancelación. Las acciones son útiles cuando se necesita ejecutar operaciones que pueden tomar un tiempo considerable y requieren seguimiento del progreso.
+
+
+##### Clasificación
+
+1. **Simple**:
+Una acción simple consta de una sola meta que el cliente envía al servidor para su ejecución. El servidor procesa la meta y devuelve un resultado al cliente.
+
+2. **Compuesta**:
+Una acción compuesta puede involucrar múltiples pasos o sub-tareas. El cliente envía una serie de metas secuenciales al servidor, y este último ejecuta las tareas en orden y proporciona retroalimentación del progreso entre cada paso.
+
+##### Tipos
+
+1. **actionlib (acciones de acción simple)**:Este es el sistema de acciones original en ROS 1. Aunque no está incluido en la distribución principal de ROS 2, todavía es compatible a través del puente de compatibilidad ROS 1-ROS 2.
+
+1. **rcl_action (acciones de ROS 2)**:Es el sistema de acciones nativo de ROS 2 y proporciona una implementación más eficiente y flexible que actionlib. Incluye soporte tanto para acciones simples como compuestas.
+
+
+
+
+
+
+
+
 <br>
 
 ### PARAMETROS
 
-<br>
 
-#### ACCIONES
 
 ---
 ## REPASO DE MATRICES(Álgebra lineal)
