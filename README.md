@@ -693,7 +693,22 @@ Una acción compuesta puede involucrar múltiples pasos o sub-tareas. El cliente
 
 <br>
 
-### PARAMETROS
+## VIRTUALIZACIÓN DE UN ROBOT
+
+En ROS (Robot Operating System), el **URDF** (Unified Robot Description Format) es un formato de archivo XML utilizado para describir la geometría del robot, es decir, su estructura física, en términos de enlaces (**links**) y juntas (**joints**). Los enlaces representan las partes sólidas del robot (como **eslabones o piezas**), mientras que las juntas describen cómo estos enlaces están conectados y pueden moverse entre sí (como **articulaciones rotativas o prismáticas**).
+
+<div id="header" align="center">
+    <img src="/images/urdf.png" alt="Urdf" width="300px">
+</div>
+
+El **Xacro** es una extensión de XML utilizada para escribir URDF de manera más eficiente y modular. Permite la reutilización de código y la parametrización de modelos, lo que simplifica la descripción y mantenimiento de robots complejos.
+
+El **SDF** (Simulation Description Format) es un formato de archivo XML utilizado en el simulador Gazebo. Describe tanto la geometría como la física de los modelos de robots y entornos de simulación. Mientras que el URDF y el Xacro se centran en la geometría y la cinemática del robot, el SDF agrega información adicional necesaria para la simulación, como propiedades de los materiales, colisiones y restricciones físicas.
+
+<div id="header" align="center">
+    <img src="/images/sdf.jpg" alt="sdf" width="300px">
+</div>
+
 
 
 
