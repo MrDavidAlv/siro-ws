@@ -1,0 +1,5 @@
+<launch>
+    <executable pkg="cpp_siro" exec="siro_node_publicador" name="siro_node_publicador"/>
+    <executable pkg="cpp_siro" exec="siro_node_suscriptor" name="siro_node_suscriptor"/>
+</launch>
+

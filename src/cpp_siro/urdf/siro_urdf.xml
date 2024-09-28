@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<robot name="siro_robot">
+
+  <!-- Cuerpo principal del robot -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.7 0.4 0.2"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Ruedas -->
+  <link name="wheel1">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.1"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="wheel2">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.1"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="wheel3">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.1"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="wheel4">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.1"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="lidar">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.1"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Conjunto de ruedas -->
+  <joint name="joint_wheel1" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel1"/>
+    <origin rpy="1.5708 0 0"  xyz="0.25 0.25 -0.07"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="joint_wheel2" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel2"/>
+    <origin rpy="1.5708 0 0"  xyz="0.25 -0.25 -0.07"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="joint_wheel3" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel3"/>
+    <origin rpy="1.5708 0 0"   xyz="-0.25 0.25 -0.07"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="joint_wheel4" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel4"/>
+    <origin rpy="1.5708 0 0" xyz="-0.25 -0.25 -0.07"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="joint_lidar" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <origin rpy="0 0 0" xyz="0.2 0 0.15"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+</robot>

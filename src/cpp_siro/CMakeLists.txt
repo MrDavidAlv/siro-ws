@@ -14,15 +14,18 @@ find_package(std_msgs REQUIRED)
 # Agrega el ejecutable del nodo
 add_executable(siro_node_suscriptor src/siro_node_suscriptor.cpp)
 add_executable(siro_node_publicador src/siro_node_publicador.cpp)
+add_executable(rendimientoCpp src/rendimientoCpp.cpp)
 
 # Especifica las dependencias para el ejecutable
 ament_target_dependencies(siro_node_suscriptor rclcpp std_msgs)
 ament_target_dependencies(siro_node_publicador rclcpp std_msgs)
+ament_target_dependencies(rendimientoCpp rclcpp std_msgs)
 
 # Instala el ejecutable
 install(TARGETS
   siro_node_suscriptor
   siro_node_publicador
+  rendimientoCpp
   DESTINATION lib/${PROJECT_NAME}
 )
 
