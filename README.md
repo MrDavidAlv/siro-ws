@@ -667,31 +667,240 @@ turtlesim.srv.Spawn_Response(name='tortuga_mario')
 
 ### ACCIONES
 
-En ROS 2, las acciones son un mecanismo de comunicación que permite a los nodos ejecutar tareas complejas de manera asíncrona, con retroalimentación sobre el progreso y la capacidad de cancelación. Las acciones son útiles cuando se necesita ejecutar operaciones que pueden tomar un tiempo considerable y requieren seguimiento del progreso.
+Las acciones en ROS 2 permiten a los nodos ejecutar tareas complejas de forma asíncrona, con retroalimentación y capacidad de cancelación. Son útiles para operaciones que requieren tiempo y seguimiento.
+
+Una acción tiene tres componentes:
+
+1. **Goal**: El objetivo que el cliente envía al servidor.
+2. **Result**: El resultado final que el servidor devuelve al cliente.
+3. **Feedback**: Información intermedia que el servidor envía al cliente durante la ejecución.
 
 
-##### Clasificación
+##### Tipos de Acciones
 
-1. **Simple**:
-Una acción simple consta de una sola meta que el cliente envía al servidor para su ejecución. El servidor procesa la meta y devuelve un resultado al cliente.
+- **Simple**: e envía un solo objetivo, el servidor procesa y devuelve un resultado.
+- **Compuesta**: Involucra varios pasos o sub-tareas secuenciales, con feedback entre cada uno.
 
-2. **Compuesta**:
-Una acción compuesta puede involucrar múltiples pasos o sub-tareas. El cliente envía una serie de metas secuenciales al servidor, y este último ejecuta las tareas en orden y proporciona retroalimentación del progreso entre cada paso.
+##### Sistemas
 
-##### Tipos
-
-1. **actionlib (acciones de acción simple)**:Este es el sistema de acciones original en ROS 1. Aunque no está incluido en la distribución principal de ROS 2, todavía es compatible a través del puente de compatibilidad ROS 1-ROS 2.
-
-1. **rcl_action (acciones de ROS 2)**:Es el sistema de acciones nativo de ROS 2 y proporciona una implementación más eficiente y flexible que actionlib. Incluye soporte tanto para acciones simples como compuestas.
+- **actionlib**: Sistema de acciones de ROS 1, compatible en ROS 2 mediante un puente.
+- **rcl_action**: Sistema nativo de ROS 2, más eficiente y flexible.
 
 
+##### Comandos
+Ejecutar el nodo `turtle_teleop_key`, el cual permite controlar la tortuga:
+```bash
+ros2 run turtlesim turtle_teleop_key
+```
+Al controlar la tortuga con el teclado, podremos ver en la consola del nodo  `turtlesim_node` las acciones.
+
+```
+axioma@axioma-ThinkPad-E14:~$ ros2 run turtlesim turtlesim_node 
+
+  Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+  [INFO] [1727503174.349438896] [turtlesim]: Starting turtlesim with node name /turtlesim
+  [INFO] [1727503174.354274238] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+  [INFO] [1727503191.485609711] [turtlesim]: Rotation goal completed successfully
+  [INFO] [1727503194.604274960] [turtlesim]: Rotation goal canceled
+  [WARN] [1727503201.052657946] [turtlesim]: Rotation goal received before a previous goal finished. Aborting previous goal
+  [INFO] [1727503202.396488251] [turtlesim]: Rotation goal completed successfully
+
+```
+Revisanmos la información del nodo `turtlesim_node`:
+```bash
+ros2 node info /turtlesim
+```
+Esta es la arquitectura del nodo:
+```
+/turtlesim
+  Subscribers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /turtle1/cmd_vel: geometry_msgs/msg/Twist
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /turtle1/color_sensor: turtlesim/msg/Color
+    /turtle1/pose: turtlesim/msg/Pose
+  Service Servers:
+    /clear: std_srvs/srv/Empty
+    /kill: turtlesim/srv/Kill
+    /reset: std_srvs/srv/Empty
+    /spawn: turtlesim/srv/Spawn
+    /turtle1/set_pen: turtlesim/srv/SetPen
+    /turtle1/teleport_absolute: turtlesim/srv/TeleportAbsolute
+    /turtle1/teleport_relative: turtlesim/srv/TeleportRelative
+    /turtlesim/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /turtlesim/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /turtlesim/get_parameters: rcl_interfaces/srv/GetParameters
+    /turtlesim/list_parameters: rcl_interfaces/srv/ListParameters
+    /turtlesim/set_parameters: rcl_interfaces/srv/SetParameters
+    /turtlesim/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+    /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+  Action Clients:
+```
+Es importante destacar que este nodo contiene un `Action server`
+```
+Action Servers:
+    /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+```
+
+Ahora, si se inspecciona el nodo `turtle_teleop_key`
+```bash
+ros2 node info /teleop_turtle 
+```
+Y podemos revisar la arquitectura del nodo:
+```
+/teleop_turtle
+  Subscribers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /turtle1/cmd_vel: geometry_msgs/msg/Twist
+  Service Servers:
+    /teleop_turtle/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /teleop_turtle/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /teleop_turtle/get_parameters: rcl_interfaces/srv/GetParameters
+    /teleop_turtle/list_parameters: rcl_interfaces/srv/ListParameters
+    /teleop_turtle/set_parameters: rcl_interfaces/srv/SetParameters
+    /teleop_turtle/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+    /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+```
+EEn este caso, el nodo tiene un `Action client`
+```
+  Action Clients:
+    /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+```
+
+**Otros comandos importantes**
+1. Listar acciones
+```bash
+ros2 action list
+```
+En consola se listan las acciones en ejecución
+```
+/turtle1/rotate_absolute
+```
+
+2. Listar acciones y el tipo
+```bash
+ros2 action list -t
+```
+En consla observamos las acciones y el tipo:
+```
+/turtle1/rotate_absolute [turtlesim/action/RotateAbsolute]
+```
+
+3. Ver informacion de una accion
+```bash
+ros2 action info /turtlesim/action/RotateAbsolute
+```
+En este caso se observaran el servidor y los clientes:
+```
+Action: /turtlesim/action/RotateAbsolute
+Action clients: 1
+Action servers: 1
+```
+
+4. Ver interfaz de la acción
+```bash
+ros2 interface show turtlesim/action/RotateAbsolute
+```
+Con esto observamos la estructura de los datos de la acción
+```
+# The desired heading in radians
+float32 theta
+---
+# The angular displacement in radians to the starting position
+float32 delta
+---
+# The remaining rotation in radians
+float32 remaining
+```
+5. Usar la acción acción
+```bash
+ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: 1.72}"
+```
+Con esto enviamos a través de la acción en radianes el nuevo angulo de la tortuga
+```
+Waiting for an action server to become available...
+Sending goal:
+     theta: 1.72
+
+Goal accepted with ID: 0932fbe8ea15419ba192ac3f1b6111aa
+
+Result:
+    delta: -0.4000000059604645
+
+Goal finished with status: SUCCEEDED
+```
+
+6. Visualiza el feedback
+```bash
+ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: 1.72}" --feedback
+```
+Podemos ver los datos del feedback
+```
+Feedback:
+    remaining: 0.10399997234344482
+Feedback:
+    remaining: 0.08799993991851807
+Feedback:
+    remaining: 0.07200002670288086
+Feedback:
+    remaining: 0.0559999942779541
+Feedback:
+    remaining: 0.039999961853027344
+Feedback:
+    remaining: 0.023999929428100586
+Feedback:
+    remaining: 0.008000016212463379
+Result:
+    delta: -2.8480000495910645
+
+Goal finished with status: SUCCEEDED
+```
+
+
+---
+### Trabajando con ROS
+Instalación de dependencias para ROS: 
+```bash
+ros2 apt install python3-colcon-common-extensions
+```
+#### Creando un espacio de trabajo
+1. Creación del workspace.
+
+```mkdir -p siro_ws/src```
+
+2. Ingresamos a `siro_ws`
+
+```cd siro_ws```
+
+3. Compilación del proyecto
+
+ ```colcon build```
 
 
 
 
 
 
-<br>
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+---
 
 ## VIRTUALIZACIÓN DE UN ROBOT
 
