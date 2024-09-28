@@ -879,15 +879,128 @@ ros2 apt install python3-colcon-common-extensions
 #### Creando un espacio de trabajo
 1. Creación del workspace.
 
-```mkdir -p siro_ws/src```
+```
+mkdir -p siro_ws/src
+```
 
 2. Ingresamos a `siro_ws`
 
-```cd siro_ws```
+```
+cd siro_ws
+```
 
 3. Compilación del proyecto
 
- ```colcon build```
+ ```
+ colcon build
+ ```
+
+#### Creando un paquete python
+Creando un paquete con `python`
+```
+ros2 pkg create --build-type ament_python --node-name primer_nodo paquete_python
+```
+
+ahora compilar el paquete y leer el compilado del proyecto
+```
+cd ~/siro-ws/
+colcon build --packages-select paquete_python
+
+source install/setup.bash
+```
+Ahora si corremos el nodo
+```
+ros2 run paquete_python primer_nodo
+```
+| Método                            | Tema      | Descripción                                                  | Ejemplo de Uso                                                 |
+|-----------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------|
+| **Nodos**                         |           |                                                              |                                                               |
+| `rclpy.init()`                    | Nodo      | Inicializa la biblioteca rclpy.                             | `rclpy.init()`                              |
+| `Node()`                          | Nodo      | Crea un nodo en el sistema ROS 2.                           | `node = rclpy.create_node('nombre_del_nodo')` |
+| `get_logger()`                    | Nodo      | Obtiene el objeto logger para imprimir mensajes de registro. | `logger = node.get_logger()<br>logger.info('Mensaje de información')` |
+| `spin()`                          | Nodo      | Mantiene el nodo en ejecución, procesando callbacks.        | `rclpy.spin(node)`                          |
+| `shutdown()`                      | Nodo      | Apaga la biblioteca rclpy y destruye el nodo.              | `rclpy.shutdown()`                          |
+| **Tópicos**                       |           |                                                              |                                                               |
+| `create_subscription()`           | Tópico    | Crea un suscriptor para recibir mensajes de un tópico.      | `subscription = node.create_subscription(<br>    std_msgs.msg.String, 'topic', callback_function)` |
+| `create_publisher()`              | Tópico    | Crea un publicador para enviar mensajes a un tópico.        | `publisher = node.create_publisher(<br>    std_msgs.msg.String, 'topic', 10)` |
+| `publish()`                       | Tópico    | Publica un mensaje a un tópico.                             | `msg = std_msgs.msg.String(data='Hola, ROS2')<br>publisher.publish(msg)` |
+| `destroy_subscription()`          | Tópico    | Destruye un suscriptor específico.                           | `node.destroy_subscription(subscription)`   |
+| `destroy_publisher()`             | Tópico    | Destruye un publicador específico.                           | `node.destroy_publisher(publisher)`         |
+| **Servicios**                     |           |                                                              |                                                               |
+| `create_service()`                | Servicio  | Crea un servicio para manejar solicitudes y respuestas.      | `service = node.create_service(<br>    std_srvs.srv.SetBool, 'service_name', callback_function)` |
+| `call_service()`                  | Servicio  | Llama a un servicio y espera su respuesta.                  | `client = node.create_client(<br>    std_srvs.srv.SetBool, 'service_name')<br>response = client.call_async(request)` |
+| `destroy_service()`               | Servicio  | Destruye un servicio específico.                             | `node.destroy_service(service)`             |
+| **Acciones**                      |           |                                                              |                                                               |
+| `create_action_server()`          | Acción     | Crea un servidor de acción para gestionar acciones.          | `action_server = rclpy.action.ActionServer(node,<br>    MyAction, 'action_name', execute_callback)` |
+| `create_action_client()`          | Acción     | Crea un cliente de acción para enviar metas a un servidor.   | `action_client = rclpy.action.ActionClient(node,<br>    MyAction, 'action_name')` |
+| `send_goal()`                     | Acción     | Envía un objetivo al servidor de acción.                     | `goal_handle = action_client.send_goal_async(goal)` |
+| `wait_for_result()`               | Acción     | Espera el resultado de una acción después de enviar un objetivo. | `result_future = action_client.wait_for_result(goal_handle)` |
+| `get_result()`                    | Acción     | Obtiene el resultado de la acción completada.               | `result = result_future.result()`           |
+| `destroy_action_server()`         | Acción     | Destruye un servidor de acción específico.                  | `action_server.destroy()`                    |
+| `destroy_action_client()`         | Acción     | Destruye un cliente de acción específico.                   | `action_client.destroy()`                    |
+
+
+#### Creando un paquete cmake
+Creando un paquete con `c++`
+```
+ros2 pkg create --build-type ament_cmake --node-name primer_nodo_cpp paquete_cpp
+```
+
+```
+cd ~/siro-ws/
+colcon build --packages-select paquete_cpp
+
+source install/setup.bash
+```
+Ahora si corremos el nodo
+```
+ros2 run paquete_cpp primer_nodo_cpp
+```
+| Método                                | Tema      | Descripción                                                  | Ejemplo de Uso                                                 |
+|---------------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------|
+| **Nodos**                             |           |                                                              |                                                               |
+| `rclcpp::init()`                     | Nodo      | Inicializa la biblioteca rclcpp.                            | `rclcpp::init(argc, argv);`                   |
+| `std::make_shared<Node>()`           | Nodo      | Crea un nodo en el sistema ROS 2.                           | `auto node = std::make_shared<rclcpp::Node>("nombre_del_nodo");` |
+| `get_logger()`                        | Nodo      | Obtiene el objeto logger para imprimir mensajes de registro. | `RCLCPP_INFO(node->get_logger(), "Mensaje de información");` |
+| `spin()`                              | Nodo      | Mantiene el nodo en ejecución, procesando callbacks.        | `rclcpp::spin(node);`                         |
+| `shutdown()`                          | Nodo      | Apaga la biblioteca rclcpp y destruye el nodo.             | `rclcpp::shutdown();`                          |
+| **Tópicos**                           |           |                                                              |                                                               |
+| `create_subscription()`               | Tópico    | Crea un suscriptor para recibir mensajes de un tópico.      | `auto subscription = node->create_subscription<std_msgs::msg::String>(<br>    "topic", callback_function);` |
+| `create_publisher()`                  | Tópico    | Crea un publicador para enviar mensajes a un tópico.        | `auto publisher = node->create_publisher<std_msgs::msg::String>("topic", 10);` |
+| `publish()`                           | Tópico    | Publica un mensaje a un tópico.                             | `std_msgs::msg::String msg;<br>msg.data = "Hola, ROS2";<br>publisher->publish(msg);` |
+| `destroy_subscription()`              | Tópico    | Destruye un suscriptor específico.                           | `node->destroy_subscription(subscription);`   |
+| `destroy_publisher()`                 | Tópico    | Destruye un publicador específico.                           | `node->destroy_publisher(publisher);`         |
+| **Servicios**                         |           |                                                              |                                                               |
+| `create_service()`                    | Servicio  | Crea un servicio para manejar solicitudes y respuestas.      | `auto service = node->create_service<std_srvs::srv::SetBool>(<br>    "service_name", callback_function);` |
+| `create_client()`                     | Servicio  | Crea un cliente para llamar a un servicio.                  | `auto client = node->create_client<std_srvs::srv::SetBool>("service_name");` |
+| `call_service()`                      | Servicio  | Llama a un servicio y espera su respuesta.                  | `auto future = client->async_send_request(request);` |
+| `destroy_service()`                   | Servicio  | Destruye un servicio específico.                             | `node->destroy_service(service);`             |
+| **Acciones**                          |           |                                                              |                                                               |
+| `create_action_server()`              | Acción     | Crea un servidor de acción para gestionar acciones.          | `auto action_server = rclcpp_action::create_server<MyAction>(<br>    node,<br>    "action_name", execute_callback);` |
+| `create_action_client()`              | Acción     | Crea un cliente de acción para enviar metas a un servidor.   | `auto action_client = rclcpp_action::create_client<MyAction>(node, "action_name");` |
+| `send_goal()`                         | Acción     | Envía un objetivo al servidor de acción.                     | `auto future = action_client->async_send_goal(goal);` |
+| `wait_for_result()`                   | Acción     | Espera el resultado de una acción después de enviar un objetivo. | `auto result_future = action_client->async_get_result(goal_handle);` |
+| `get_result()`                        | Acción     | Obtiene el resultado de la acción completada.               | `auto result = result_future.get();`          |
+| `destroy_action_server()`             | Acción     | Destruye un servidor de acción específico.                  | `action_server->destroy();`                   |
+| `destroy_action_client()`             | Acción     | Destruye un cliente de acción específico.                   | `action_client->destroy();`                   |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -914,9 +1027,21 @@ El **Xacro** es una extensión de XML utilizada para escribir URDF de manera má
 
 El **SDF** (Simulation Description Format) es un formato de archivo XML utilizado en el simulador Gazebo. Describe tanto la geometría como la física de los modelos de robots y entornos de simulación. Mientras que el URDF y el Xacro se centran en la geometría y la cinemática del robot, el SDF agrega información adicional necesaria para la simulación, como propiedades de los materiales, colisiones y restricciones físicas.
 
-<div id="header" align="center">
-    <img src="/images/sdf.jpg" alt="sdf" width="300px">
-</div>
+| Elemento              | Descripción                                                      | Ejemplo de Uso                                               |
+|-----------------------|------------------------------------------------------------------|-------------------------------------------------------------|
+| **`<robot>`**         | Elemento raíz que define el robot.                              | `<robot name="mi_robot">`                                   |
+| **`<link>`**          | Define un link del robot, que representa una parte rígida.      | `<link name="base_link">`                                   |
+| **`<joint>`**         | Define la conexión entre dos links y su tipo de movimiento.     | `<joint name="joint1" type="revolute">`                   |
+| **`<origin>`**        | Especifica la posición y orientación del link o joint.          | `<origin xyz="0 0 0.1" rpy="0 0 0"/>`                      |
+| **`<parent>`**        | Define el link padre en un joint.                               | `<parent link="base_link"/>`                                |
+| **`<child>`**         | Define el link hijo en un joint.                                | `<child link="link1"/>`                                     |
+| **`<visual>`**        | Define la representación visual del link.                       | `<visual><geometry><box size="0.1 0.1 0.1"/></geometry></visual>` |
+| **`<collision>`**     | Define la geometría para las colisiones.                        | `<collision><geometry><cylinder radius="0.05" length="0.1"/></geometry></collision>` |
+| **`<sensor>`**        | Define un sensor asociado al link.                              | `<sensor name="my_sensor" type="camera">...</sensor>`      |
+| **`<material>`**      | Define las propiedades de material, como color.                 | `<material name="red_material"><color rgba="1 0 0 1"/></material>` |
+| **`<include>`**       | Permite incluir otros archivos URDF dentro del archivo actual.  | `<include filename="otro_robot.urdf"/>`                    |
+| **`<transmission>`**  | Define cómo el movimiento se transmite entre los joints y motores. | `<transmission name="transmission1"><actuator name="motor1"/><joint name="joint1"/></transmission>` |
+
 
 
 
@@ -998,5 +1123,36 @@ Realizar el paso 3 y 4 cada vez que se realice un cambio
 
 
 
+## POO con Python
+
+| Concepto                          | Descripción                                                          | Ejemplo de Uso                                                 |
+|-----------------------------------|----------------------------------------------------------------------|---------------------------------------------------------------|
+| **Definición de Clase**           | Define una nueva clase en Python.                                   | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`pass`                                |
+| **Constructor**                   | Método especial que se llama al crear una instancia de la clase.   | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def __init__(self, valor):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`self.valor = valor` |
+| **Método**                        | Función definida dentro de una clase que opera en instancias.      | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def mi_metodo(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return self.valor` |
+| **Herencia**                      | Permite que una clase herede atributos y métodos de otra clase.    | `class ClaseBase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`pass`<br>`class ClaseDerivada(ClaseBase):`<br>&nbsp;&nbsp;&nbsp;&nbsp;`pass` |
+| **Sobrecarga de Métodos**        | Permite definir métodos con el mismo nombre pero diferentes parámetros (no soportado directamente en Python). | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def metodo(self, a):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return a`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def metodo(self, a, b):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return a + b` |
+| **Polimorfismo**                 | Permite que un mismo método tenga diferentes implementaciones en diferentes clases. | `class Animal:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def hacer_sonido(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pass`<br>`class Perro(Animal):`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def hacer_sonido(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return "Guau"`<br>`class Gato(Animal):`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def hacer_sonido(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return "Miau"` |
+| **Encapsulamiento**               | Restringe el acceso a ciertos atributos o métodos dentro de la clase. | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def __init__(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`self.__valor_privado = 10`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def obtener_valor(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return self.__valor_privado` |
+| **Atributos de Clase**           | Atributos que pertenecen a la clase en lugar de a instancias individuales. | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`atributo_clase = 0`                |
+| **Atributos de Instancia**       | Atributos que pertenecen a una instancia específica de la clase.   | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def __init__(self, valor):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`self.valor_instancia = valor` |
+| **Método Estático**              | Método que pertenece a la clase y no requiere acceso a la instancia. | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`@staticmethod`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def metodo_estatico():`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return "Hola"` |
+| **Método de Clase**              | Método que recibe la clase como primer argumento en lugar de la instancia. | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`@classmethod`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def metodo_clase(cls):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return cls` |
 
 
+## POO con C++
+
+| Concepto                          | Descripción                                                          | Ejemplo de Uso                                                 |
+|-----------------------------------|----------------------------------------------------------------------|---------------------------------------------------------------|
+| **Definición de Clase**           | Define una nueva clase en C++.                                      | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`public:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`MiClase();`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`~MiClase();`<br>&nbsp;&nbsp;&nbsp;&nbsp;`};` |
+| **Constructor**                   | Método especial que se llama al crear una instancia de la clase.    | `MiClase::MiClase() { /* Constructor */ }`                   |
+| **Destructor**                    | Método especial que se llama al destruir una instancia de la clase. | `MiClase::~MiClase() { /* Destructor */ }`                    |
+| **Método**                        | Función definida dentro de una clase que opera en instancias.       | `void MiClase::miMetodo() { /* código */ }`                  |
+| **Herencia**                      | Permite que una clase herede atributos y métodos de otra clase.     | `class ClaseBase { };`<br>`class ClaseDerivada : public ClaseBase { };` |
+| **Sobrecarga de Métodos**        | Permite definir métodos con el mismo nombre pero diferentes parámetros. | `void metodo(int a) { /* código */ }`<br>`void metodo(double b) { /* código */ }` |
+| **Polimorfismo**                 | Permite que un mismo método tenga diferentes implementaciones en diferentes clases. | `class Animal { public: virtual void hacerSonido(); };`<br>`class Perro : public Animal { public: void hacerSonido() override; };` |
+| **Encapsulamiento**               | Restringe el acceso a ciertos atributos o métodos dentro de la clase. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`private:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`int valorPrivado;`<br>&nbsp;&nbsp;&nbsp;&nbsp;`public:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`int getValorPrivado() { return valorPrivado; }`<br>`};` |
+| **Atributos de Clase**           | Atributos que pertenecen a la clase en lugar de a instancias individuales. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`static int atributoClase;`<br>`};` |
+| **Atributos de Instancia**       | Atributos que pertenecen a una instancia específica de la clase.    | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`int valorInstancia;`<br>`};` |
+| **Método Estático**              | Método que pertenece a la clase y no requiere acceso a la instancia. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`static void metodoEstatico() { /* código */ }`<br>`};` |
+| **Método de Clase**              | Método que recibe la clase como primer argumento en lugar de la instancia. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`static void metodoClase() { /* código */ }`<br>`};` |
