@@ -895,6 +895,29 @@ En ROS 2, las interfaces definen cómo se comunican los nodos entre sí mediante
   Las interfaces se definen en archivos `.msg`, `.srv`, o .`action`.
   ROS 2 utiliza DDS para gestionar la comunicación y garantizar el envío de datos de las interfaces entre los nodos.
 
+### Comandos
+1. Listar todas las interfaces:
+```bash
+ros2 interface list
+```
+2. Listar solo las interfaces de acciones:
+```bash
+ros2 interface list | grep action
+```
+3. Mostrar los detalles de una interfaz de acción:
+```bash
+ros2 interface show turtlesim/action/RotateAbsolute
+```
+4. Mostrar la interfaz de un mensaje o servicio específico.
+- Para mensajes:
+```bash
+ros2 interface show geometry_msgs/msg/Twist
+```
+- Para servicios:
+```bash
+ros2 interface show turtlesim/srv/TeleportAbsolute
+
+```
 
 
 
