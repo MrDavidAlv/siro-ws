@@ -916,9 +916,22 @@ ros2 interface show geometry_msgs/msg/Twist
 - Para servicios:
 ```bash
 ros2 interface show turtlesim/srv/TeleportAbsolute
-
 ```
 
+## LAUNCH
+En ROS 2, los launch files (archivos de lanzamiento) son scripts que se utilizan para iniciar y configurar nodos y sistemas completos. Estos archivos permiten ejecutar varios nodos simultáneamente, establecer parámetros, definir remapeos de temas y configurar acciones o servicios, todo en un solo comando.
+
+### Características principales:
+
+  1. **Lenguaje**: Los launch files en ROS 2 están escritos en Python.
+  Modularidad: Permiten lanzar múltiples nodos a la vez.
+  2. **Configuración**: Puedes establecer parámetros, remapear temas y configurar dependencias entre nodos.
+  3. **Reusabilidad**: Se pueden crear composiciones de nodos y reutilizar archivos launch en diferentes proyectos.
+
+Ejemplo:
+```bash
+ros2 launch <nombre_paquete> <archivo_launch.py>
+```
 
 
 </br></br>
@@ -1037,6 +1050,58 @@ ros2 run paquete_cpp primer_nodo_cpp
 | `destroy_action_server()`             | Acción     | Destruye un servidor de acción específico.                  | `action_server->destroy();`                   |
 | `destroy_action_client()`             | Acción     | Destruye un cliente de acción específico.                   | `action_client->destroy();`                   |
 
+
+## CREANDO UN LAUNCH
+
+### Talker y listener en un solo comando
+```python
+from launch import LaunchDescription
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    return LaunchDescription([
+        # Nodo de turtlesim_node
+        Node(
+            package='turtlesim',
+            executable='turtlesim_node',
+            name='turtlesim',
+            output='screen'
+        ),
+        # Nodo de turtle_teleop_key
+        Node(
+            package='turtlesim',
+            executable='turtle_teleop_key',
+            name='teleop_turtle',
+            output='screen'
+        )
+    ])
+```
+
+**Consideraciones**
+1. **En C++**:Modificar el archivo `CMakeLists.txt`:
+
+    Debes asegurarte de que tu archivo launch.py se instale correctamente. 
+
+    Abre el archivo `CMakeLists.txt` en la raíz de tu paquete y añade lo siguiente al final:
+
+    ```cmake
+    install(
+    DIRECTORY launch
+    DESTINATION share/${PROJECT_NAME}
+    )
+    ```
+
+2. **En Python**: modificar el archivo `setup.py`.
+
+    Debes asegurarte de que tu archivo launch.py se instale correctamente. 
+
+    Abre el archivo `setup.py` y añade el directorio:
+    
+    ```python
+    data_files=[
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
+    ],
+    ```
 
 
 
