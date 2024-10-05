@@ -18,7 +18,7 @@ class Suscriptor(Node):
 
     def callback(self, msg):
         # Esta función se llama cada vez que se recibe un mensaje
-        self.get_logger().info(f'Recibido en Python: "{msg.data}"')  # Mostrar el contenido del mensaje recibido en el registro
+        self.get_logger().info(f'Recibido en Python: "{msg}"')  # Mostrar el contenido del mensaje recibido en el registro
 
 def main(args=None):
     rclpy.init(args=args)  # Inicializar la biblioteca de cliente de ROS 2

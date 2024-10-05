@@ -18,7 +18,7 @@ class Publicador(Node):
     def cronometro(self):
         # Esta función se llama cada vez que se activa el temporizador
         msg = String()  # Crear un nuevo mensaje de tipo String
-        msg.data = f'Estoy enviando datos desde Python: {self.i}'  # Formatear el mensaje con el contador actual
+        msg.data = f'Hola mundo: {self.i}'  # Formatear el mensaje con el contador actual
         self.publisher.publish(msg)  # Publicar el mensaje en el tema
 
         # Registrar el mensaje publicado en la consola

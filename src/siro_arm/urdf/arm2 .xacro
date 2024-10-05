@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!-- Revolute-Revolute Manipulator -->
+<robot name="arm2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Constants for robot dimensions -->
+  <xacro:property name="PI" value="3.1415926535897931"/>
+  <xacro:property name="mass" value="1" /> <!-- arbitrary value for mass -->
+  <xacro:property name="width" value="0.1" /> <!-- Square dimensions (widthxwidth) of beams -->
+  <xacro:property name="height1" value="2" /> <!-- Link 1 -->
+  <xacro:property name="height2" value="1" /> <!-- Link 2 -->
+  <xacro:property name="height3" value="1" /> <!-- Link 3 -->
+  <xacro:property name="camera_link" value="0.05" /> <!-- Size of square 'camera' box -->
+  <xacro:property name="axel_offset" value="0.05" /> <!-- Space btw top of beam and the each joint -->
+
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+  <xacro:include filename="$(find rrbot_description)/urdf/planar_3dof.gazebo" />
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find rrbot_description)/urdf/materials.xacro" />
+
+
+
+
+<!--******** link base ********-->
+<link name="base_link">
+<visual>
+<geometry>
+    <mesh filename="package://siro_arm/models/meshes/v_bot/part1.stl"/>
+  </geometry>
+</visual> 
+<collision>
+  <geometry>
+    <mesh filename="ppackage://siro_arm/models/meshes/c_bot/part1.dae"/>
+  </geometry>
+</collision>
+</link>
+
+<!--******** link1 ********-->
+<link name="link_1">
+<visual>
+<geometry>
+    <mesh filename="package://siro_arm/models/meshes/v_bot/part2.stl"/>
+  </geometry>
+</visual> 
+<collision>
+  <geometry>
+    <mesh filename="ppackage://siro_arm/models/meshes/c_bot/part2.dae"/>
+  </geometry>
+</collision>
+</link>
+
+
+
+<!--******** joint ********-->
+<link name="link_2">
+<visual>
+<geometry>
+    <mesh filename="package://siro_arm/models/meshes/v_bot/part3.stl"/>
+  </geometry>
+</visual>
+<collision>
+  <geometry>
+    <mesh filename="ppackage://siro_arm/models/meshes/c_bot/part3.dae"/>
+  </geometry>
+</collision> 
+</link>
+
+<!--******** joint ********-->
+
+<link name="link_3">
+<visual>
+  <geometry>
+    <mesh filename="package://siro_arm/models/meshes/v_bot/part4.stl"/>
+  </geometry>
+</visual>
+<collision>
+  <geometry>
+    <mesh filename="ppackage://siro_arm/models/meshes/c_bot/part4.dae"/>
+  </geometry>
+</collision> 
+</link>
+
+<!--******** joint ********-->
+
+<link name="link_4">
+<visual>
+  <geometry>
+    <mesh filename="package://siro_arm/models/meshes/v_bot/part5.stl"/>
+  </geometry>
+</visual>
+<collision>
+  <geometry>
+    <mesh filename="ppackage://siro_arm/models/meshes/c_bot/part5.dae"/>
+  </geometry>
+</collision> 
+</link>
+
+<!--******** link ********-->
+<link name="gripper">
+<visual>
+  <geometry>
+    <mesh filename="package://siro_arm/models/meshes/v_bot/part61.stl"/>
+  </geometry>
+</visual>
+<collision>
+  <geometry>
+    <mesh filename="ppackage://siro_arm/models/meshes/c_bot/part61.dae"/>
+  </geometry>
+</collision> 
+</link>
+
+<!--******** link ********-->
+<link name="end" /> 
+
+
+
+
+
+
+<!--******** joint ********-->
+<joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+</joint>
+
+<!--******** joint ********-->
+<joint name="joint_1" type="revolute">
+<parent link="base_link"/>
+<child link="link_1"/>
+<origin xyz="0 0 5" rpy="0 0 0"/>
+<axis xyz="0 0 1"/>
+<limit lower="-1.57" upper="1.57" effort="0" velocity="0.5"/>
+</joint>
+<!--******** joint ********-->
+<joint name="joint_2" type="revolute">
+<parent link="link_1"/>
+<child link="link_2"/>
+<origin xyz="2.866 -0.364 4.31385" rpy="0 0 0" />
+<axis xyz="0 1 0"/>
+<limit lower="-1.57" upper="1.57" effort="0" velocity="0.5"/>
+</joint>
+<!--******** joint ********-->
+<joint name="joint_3" type="revolute">
+<parent link="link_2"/>
+<child link="link_3"/>
+<origin xyz="0 2.51 12.01" rpy="0 0 0" />
+<axis xyz="0 1 0"/>
+<limit lower="-1.57" upper="1.57" effort="0" velocity="0.5"/>
+</joint>  
+
+<!--******** joint ********-->
+<joint name="joint_4" type="revolute">
+<parent link="link_3"/>
+<child link="link_4"/>
+<origin xyz="0.33 -2.184 2.885" rpy="0 0 0" />
+<axis xyz="1 0 0"/>
+<limit lower="-1.57" upper="1.57" effort="0" velocity="0.5"/>
+</joint> 
+
+
+<!--******** joint ********-->
+<joint name="joint_5" type="revolute">
+<parent link="link_4"/>
+<child link="gripper"/>
+<origin xyz="15.3 0.3 -0.2" rpy="0 0 0" />
+<axis xyz="0 1 0"/>
+<limit lower="-1.57" upper="1.57" effort="0" velocity="0.5"/>
+</joint> 
+
+<!--******** joint ********-->
+<joint name="gripper_end" type="fixed" >
+    <parent link="gripper" />
+    <child link="end" />
+    <origin xyz="0.45 -2.184 2.885" rpy="0 0 0" />
+ </joint>
+
+
+</robot>

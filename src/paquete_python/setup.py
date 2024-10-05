@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'primer_nodo = paquete_python.primer_nodo:main',
-            'talker      = paquete_python.publicador:main',
+            'charlon      = paquete_python.publicador:main',
             'listener      = paquete_python.suscriptor:main',
         ],
     },

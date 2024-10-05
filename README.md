@@ -1,19 +1,13 @@
-# 🎯PROYECTO ROS2 HUMBLE 🤖🚀🕹️
-
-
-<!--div id="header" align="center" style="text-align: center; white-space: nowrap">
-    <img src="/images/ros2.gif" title="ros2" alt="ros2" width="300px"/>
-    <img src="/images/humble.png" title="humble" alt="humble" width="150px"/>
-</div-->
+# 🎯APRENDIENDO  SOBRE ROS 🤖🚀🕹️
 
 <div id="header" align="center">
-    <img src="/images/ros-image2.png" alt="ros humble" width="60%" max-width="100%">
+    <img src="/images/ros-image2.png" alt="ros humble" width="50%" max-width="100%">
 </div>
 
 
-`ROS2` (Robot Operating System 2) es una plataforma de código abierto diseñada para facilitar el desarrollo, operación y mantenimiento de sistemas robóticos y de automatización industrial. Ofrece una arquitectura modular y flexible que permite la comunicación entre componentes distribuidos, soportando una variedad de sistemas operativos y arquitecturas de hardware. ROS 2 se destaca por su capacidad de escalabilidad, seguridad y robustez, lo que lo convierte en una herramienta crucial para la creación de sistemas robóticos avanzados en diversos entornos industriales y de investigación.
+**ROS2** (*Robot Operating System 2*) es una plataforma de código abierto diseñada para facilitar el desarrollo, operación y mantenimiento de sistemas robóticos y de automatización industrial. Ofrece una arquitectura modular y flexible que permite la comunicación entre componentes distribuidos, soportando una variedad de sistemas operativos y arquitecturas de hardware. ROS 2 se destaca por su capacidad de escalabilidad, seguridad y robustez, lo que lo convierte en una herramienta crucial para la creación de sistemas robóticos avanzados en diversos entornos industriales y de investigación.
 
-### Historia
+## Historia
 
 **ROS** en su primera versión, **ROS1**, se desarrolló en los Laboratorios de Inteligencia Artificial de Stanford (SAIL) por estudiantes de doctorado **Eric Berger** y **Keenan Wyrobek**. Se publicó bajo una **licencia BSD** de software libre en 2007, que permite libertad para uso comercial e investigador. Desde 2008, el instituto **Willow Garage** se ha encargado principalmente del desarrollo y soporte.
 
@@ -21,21 +15,23 @@ La idea de crear un sistema operativo era estandarizar tareas como la *abstracci
 
 **ROS2** es la evolución natural del exitoso marco de trabajo **ROS1**. Desarrollado para abordar las limitaciones de su predecesor, ROS2 ofrece una *arquitectura modular* y *distribuida*, mejor *rendimiento* y *escalabilidad*, así como soporte *multiplataforma*. Lanzado oficialmente en 2015, ROS2 mantiene la *flexibilidad* y *robustez* de ROS1, al tiempo que introduce mejoras significativas en herramientas de desarrollo y comunicación. Su diseño modular permite una fácil integración con otros sistemas y una adaptación más rápida a diferentes entornos de desarrollo. Con características como compatibilidad con múltiples lenguajes de programación y una creciente comunidad de desarrolladores, ROS2 es la elección preferida para proyectos de robótica modernos y ambiciosos.
 
-#### Filosofía
-*"ROS, nacido del corazón del código abierto, ofrece libertad y flexibilidad para que los usuarios moldeen su propia realidad robótica, trazando un camino lleno de posibilidades infinitas en el vasto horizonte de la tecnología"*.
+## Filosofía
+***"ROS, nacido del corazón del código abierto, ofrece libertad y flexibilidad para que los usuarios moldeen su propia realidad robótica, trazando un camino lleno de posibilidades infinitas en el vasto horizonte de la tecnología"***.
 
 
-#### DIFERENCIAS 
+## DIFERENCIAS ENTRE ROS1 Y ROS2
 
-| Característica               | ROS 1                                                          | ROS 2                                                              |
-|------------------------------|----------------------------------------------------------------|--------------------------------------------------------------------|
-| **Arquitectura**             | Basada en un sistema de nodos con comunicación XML-RPC y TCP/IP | Arquitectura modular y distribuida, comunicación basada en DDS    |
-| **Lenguajes de Programación**| Soporte para C++, Python, Lisp, entre otros                   | Soporte para varios lenguajes, incluyendo C++, Python, y más      |
-| **Rendimiento**              | Limitaciones en rendimiento, seguridad y escalabilidad         | Mejoras significativas en rendimiento, seguridad y escalabilidad  |
-| **Multiplataforma**          | Principalmente enfocado en Linux                               | Soporte multiplataforma incluyendo Linux, Windows, y macOS        |
-| **Herramientas**             | Herramientas de desarrollo y depuración limitadas              | Mejoras en herramientas de depuración, simulación, y gestión de paquetes |
-| **Compatibilidad**           | No es directamente compatible con ROS 2                        | Introduce puentes y herramientas de migración para la compatibilidad con ROS 1 |
-| **Ecosistema**               | Ecosistema consolidado con una amplia comunidad                 | Ecosistema en constante crecimiento con una creciente comunidad de desarrolladores |
+| Característica        | ROS1          | ROS2        |
+|-----------------------|---------------|-------------|
+| **Arquitectura**  | Basada en un sistema de nodos con comunicación XML-RPC y TCP/IP | Arquitectura modular y distribuida, comunicación basada en DDS    |
+| **Lenguajes de Programación** | Soporte para C++, Python, Lisp, entre otros                   | Soporte para varios lenguajes, incluyendo C++, Python, y más      |
+| **Rendimiento** | Limitaciones en rendimiento, seguridad y escalabilidad         | Mejoras significativas en rendimiento, seguridad y escalabilidad  |
+| **Multiplataforma** | Principalmente enfocado en Linux                               | Soporte multiplataforma incluyendo Linux, Windows, y macOS        |
+| **Herramientas**  | Herramientas de desarrollo y depuración limitadas              | Mejoras en herramientas de depuración, simulación, y gestión de paquetes |
+| **Compatibilidad**  | No es directamente compatible con ROS 2                        | Introduce puentes y herramientas de migración para la compatibilidad con ROS 1 |
+| **Ecosistema**  | Ecosistema consolidado con una amplia comunidad                 | Ecosistema en constante crecimiento con una creciente comunidad de desarrolladores |
+
+
 
 
 ## Arquitectura ROS2
@@ -54,17 +50,17 @@ La arquitectura de ROS2 se ha diseñado para abordar las limitaciones de ROS1 y 
 
 En resumen, la arquitectura de ROS2 se caracteriza por su modularidad, su sistema de comunicación basado en DDS, su soporte multiplataforma y su capacidad para gestionar eficientemente los recursos del sistema. Estas características hacen de ROS2 una plataforma poderosa y versátil para el desarrollo de aplicaciones robóticas modernas.
 
-
+<br>
 <div id="header" align="center">
     <img src="/images/arquitectura.png" alt="Arquitectura de ros" width="50%" max-width="100%">
 </div>
 
 <br>
 
-### NODOS
+## NODOS
 Los nodos son bloques de código (clases) que se encargan de partes específicas de las actividades del robot. Estos se van a enlazar mediante tópicos, servicios o acciones. Básicamente nos ayudan a crear un sistema modular que se pueda modificar fácilmente y comunicar.
 
-##### Comandos básicos
+### Comandos básicos
 Usaremos el paquete turtlesim que puedes instalar [`aquí`](./turtlesim/README.md).
 
 1. Ejecutar un nodo.
@@ -144,10 +140,10 @@ En este caso vemos la información del nodo `/turtlesim`
 
 <br>
 
-### TOPICOS
+## TOPICOS
 Son canales en los cuales unos nodos publican información y otros se suscriben para recibirla. La relación para la comunicación puede ser de  *muchos a uno*(one to many), *muchos a uno*(many to one) y *muchos a muchos*(many to many).
 
-##### Caraterísticas de los tópicos
+### Caraterísticas de los tópicos
 - **Definición de Tópicos**:
 Canales de comunicación identificados por un nombre único.
 - **Tipos de Mensajes**:
@@ -166,7 +162,7 @@ Los nodos pueden usar tópicos privados para encapsular la comunicación dentro 
 Herramientas como `ros2 topic list` y `ros2 topic echo` permiten gestionar y monitorear los tópicos.
 
 
-##### Clasificación
+### Clasificación
 
 En cuanto a los tipos de tópicos, no hay una clasificación específica de los tópicos en sí; más bien, los tópicos se definen por el tipo de mensajes que manejan y el propósito de los nodos que los utilizan.
 
@@ -383,7 +379,7 @@ ROS 2 proporciona una variedad de tipos de mensajes estándar definidos en vario
 
 
 
-##### Comandos básicos
+### Comandos básicos
 1. Para ver los topicos de los nodos `turtlesim` y `teleop_key` que previamente deben estar ejecución usamos la siguiente instrucción
 
 ```bash
@@ -512,7 +508,7 @@ Retorna la velocidad de publicación.
 
 <br>
 
-### SERVICIOS
+## SERVICIOS
 
 En ROS 2, los servicios son un mecanismo de comunicación que permite a los nodos intercambiar datos de forma *síncrona*. A través de los servicios, un nodo (el servidor) puede ofrecer una funcionalidad específica que otros nodos (los clientes) pueden solicitar. Cuando un cliente hace una solicitud a un servicio, espera una respuesta inmediata del servidor. Esto es diferente de los temas (o topics), que son de naturaleza *asíncrona*.
 
@@ -526,7 +522,7 @@ Un servicio en ROS 2 tiene tres componentes principales:
 
 Este patrón de solicitud-respuesta es útil para cuando se necesita una interacción puntual y sincrónica entre nodos, en contraste con el modelo de publicación-suscripción que es más adecuado para comunicaciones asíncronas y continuas.
 
-##### Clasificación
+### Clasificación
 
 1. **Servicios estándar**:
 En ROS2, hay varios servicios estándar que forman parte de los paquetes básicos de ROS2 y proporcionan funcionalidad común que es útil para muchas aplicaciones.
@@ -549,7 +545,7 @@ En ROS2, hay varios servicios estándar que forman parte de los paquetes básico
 Los servicios no estándar son aquellos definidos por los desarrolladores para aplicaciones específicas. Estos servicios pueden variar ampliamente según el ámbito de la aplicación, el paquete ROS 2 utilizado y los requerimientos del sistema. Los archivos .srv dentro de los paquetes describen los servicios específicos.
 
 
-##### Comandos básicos
+### Comandos básicos
 
 1. Listar servicios.
 ```bash
@@ -665,7 +661,7 @@ turtlesim.srv.Spawn_Response(name='tortuga_mario')
 
 <br>
 
-### ACCIONES
+## ACCIONES
 
 Las acciones en ROS 2 permiten a los nodos ejecutar tareas complejas de forma asíncrona, con retroalimentación y capacidad de cancelación. Son útiles para operaciones que requieren tiempo y seguimiento.
 
@@ -676,18 +672,18 @@ Una acción tiene tres componentes:
 3. **Feedback**: Información intermedia que el servidor envía al cliente durante la ejecución.
 
 
-##### Tipos de Acciones
+### Tipos de Acciones
 
 - **Simple**: e envía un solo objetivo, el servidor procesa y devuelve un resultado.
 - **Compuesta**: Involucra varios pasos o sub-tareas secuenciales, con feedback entre cada uno.
 
-##### Sistemas
+### Sistemas
 
 - **actionlib**: Sistema de acciones de ROS 1, compatible en ROS 2 mediante un puente.
 - **rcl_action**: Sistema nativo de ROS 2, más eficiente y flexible.
 
 
-##### Comandos
+### Comandos
 Ejecutar el nodo `turtle_teleop_key`, el cual permite controlar la tortuga:
 ```bash
 ros2 run turtlesim turtle_teleop_key
@@ -869,14 +865,48 @@ Result:
 Goal finished with status: SUCCEEDED
 ```
 
+## INTERFACES
+En ROS 2, las interfaces definen cómo se comunican los nodos entre sí mediante mensajes, servicios o acciones. Son plantillas que describen los datos que se intercambian en las comunicaciones.
 
+
+### Tipos de Interfaces en ROS 2:
+
+  1. **Mensajes (Messages)**: Definen los datos enviados en un tema (topic). Se usan para comunicaciones asíncronas.
+
+      *Ejemplo*: `std_msgs/String` (mensaje con una cadena de texto).
+      </br>
+  2. **Servicios (Services)**: Permiten la comunicación sincrónica entre un cliente y un servidor, con una solicitud y una respuesta.
+
+        *Ejemplo*: `std_srvs/SetBool` (envía un booleano y recibe una respuesta).
+        </br>
+
+  3. **Acciones (Actions)**: Extienden los servicios para operaciones que pueden llevar más tiempo, permitiendo enviar retroalimentación y resultados parciales mientras se ejecuta.
+
+      *Ejemplo*: `action_msgs/GoalStatusArray` (monitorea el progreso de una acción).
+
+### Clasificación:
+
+  1. **Predefinidas**: ROS 2 incluye muchas interfaces listas para usar.
+
+  2. **Personalizadas**: Los desarrolladores pueden crear sus propias interfaces según los requisitos de su aplicación.
+
+
+
+  Las interfaces se definen en archivos `.msg`, `.srv`, o .`action`.
+  ROS 2 utiliza DDS para gestionar la comunicación y garantizar el envío de datos de las interfaces entre los nodos.
+
+
+
+
+</br></br>
 ---
-### Trabajando con ROS
+
+## Trabajando con ROS
 Instalación de dependencias para ROS: 
 ```bash
 ros2 apt install python3-colcon-common-extensions
 ```
-#### Creando un espacio de trabajo
+### Creando un espacio de trabajo
 1. Creación del workspace.
 
 ```
@@ -895,7 +925,7 @@ cd siro_ws
  colcon build
  ```
 
-#### Creando un paquete python
+### Creando un paquete python
 Creando un paquete con `python`
 ```
 ros2 pkg create --build-type ament_python --node-name primer_nodo paquete_python
@@ -912,25 +942,25 @@ Ahora si corremos el nodo
 ```
 ros2 run paquete_python primer_nodo
 ```
-| Método                            | Tema      | Descripción                                                  | Ejemplo de Uso                                                 |
-|-----------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------|
-| **Nodos**                         |           |                                                              |                                                               |
+| Método    | Tema | Descripción | Ejemplo de Uso  |
+|-----------|------|-------------|-----------------|
+| **Nodos** |      |             |                 |
 | `rclpy.init()`                    | Nodo      | Inicializa la biblioteca rclpy.                             | `rclpy.init()`                              |
 | `Node()`                          | Nodo      | Crea un nodo en el sistema ROS 2.                           | `node = rclpy.create_node('nombre_del_nodo')` |
 | `get_logger()`                    | Nodo      | Obtiene el objeto logger para imprimir mensajes de registro. | `logger = node.get_logger()<br>logger.info('Mensaje de información')` |
 | `spin()`                          | Nodo      | Mantiene el nodo en ejecución, procesando callbacks.        | `rclpy.spin(node)`                          |
 | `shutdown()`                      | Nodo      | Apaga la biblioteca rclpy y destruye el nodo.              | `rclpy.shutdown()`                          |
-| **Tópicos**                       |           |                                                              |                                                               |
+| **Tópicos** |      |             |                 |
 | `create_subscription()`           | Tópico    | Crea un suscriptor para recibir mensajes de un tópico.      | `subscription = node.create_subscription(<br>    std_msgs.msg.String, 'topic', callback_function)` |
 | `create_publisher()`              | Tópico    | Crea un publicador para enviar mensajes a un tópico.        | `publisher = node.create_publisher(<br>    std_msgs.msg.String, 'topic', 10)` |
 | `publish()`                       | Tópico    | Publica un mensaje a un tópico.                             | `msg = std_msgs.msg.String(data='Hola, ROS2')<br>publisher.publish(msg)` |
 | `destroy_subscription()`          | Tópico    | Destruye un suscriptor específico.                           | `node.destroy_subscription(subscription)`   |
 | `destroy_publisher()`             | Tópico    | Destruye un publicador específico.                           | `node.destroy_publisher(publisher)`         |
-| **Servicios**                     |           |                                                              |                                                               |
+| **Servicios** |      |             |                 |
 | `create_service()`                | Servicio  | Crea un servicio para manejar solicitudes y respuestas.      | `service = node.create_service(<br>    std_srvs.srv.SetBool, 'service_name', callback_function)` |
 | `call_service()`                  | Servicio  | Llama a un servicio y espera su respuesta.                  | `client = node.create_client(<br>    std_srvs.srv.SetBool, 'service_name')<br>response = client.call_async(request)` |
 | `destroy_service()`               | Servicio  | Destruye un servicio específico.                             | `node.destroy_service(service)`             |
-| **Acciones**                      |           |                                                              |                                                               |
+| **Acciones** |      |             |                 |
 | `create_action_server()`          | Acción     | Crea un servidor de acción para gestionar acciones.          | `action_server = rclpy.action.ActionServer(node,<br>    MyAction, 'action_name', execute_callback)` |
 | `create_action_client()`          | Acción     | Crea un cliente de acción para enviar metas a un servidor.   | `action_client = rclpy.action.ActionClient(node,<br>    MyAction, 'action_name')` |
 | `send_goal()`                     | Acción     | Envía un objetivo al servidor de acción.                     | `goal_handle = action_client.send_goal_async(goal)` |
