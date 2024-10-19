@@ -4,23 +4,24 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
-    #xacro_file = os.path.join(get_package_share_directory('siro_arm'), 'urdf', 'arm2.xacro')
     urdf_file = os.path.join(get_package_share_directory('siro_arm'), 'urdf', 'arm1.urdf')
 
+    with open(urdf_file, 'r') as file:
+        robot_description = file.read()
+
     return LaunchDescription([
-        # Node(
-        #     package='xacro',
-        #     executable='xacro',
-        #     name='xacro',
-        #     output='screen',
-        #     arguments=[xacro_file, '-o', urdf_file]
-        # ),
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
             name='robot_state_publisher',
             output='screen',
-            parameters=[{'robot_description': open(urdf_file).read()}]
+            parameters=[{'robot_description': robot_description}]
+        ),
+        Node(
+            package='joint_state_publisher_gui',
+            executable='joint_state_publisher_gui',
+            name='joint_state_publisher_gui',
+            output='screen'
         ),
         Node(
             package='rviz2',

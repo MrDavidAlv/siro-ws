@@ -1,89 +1,173 @@
 <?xml version="1.0"?>
-<robot name="arm1" xmlns:xacro="http://ros.org/wiki/xacro">
-<link name="world"/>
+<robot name="arm1">
 
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+</material>
+<material name="green">
+    <color rgba="0 1 0 1"/>
+</material>
+<material name="yellow">
+    <color rgba="1 1 0 1"/>
+</material>
+<material name="cyan">
+    <color rgba="0 1 1 1"/>
+</material>
+<material name="magenta">
+    <color rgba="1 0 1 1"/>
+</material>
+<material name="orange">
+    <color rgba="1 0.5 0 1"/>
+</material>
+<material name="purple">
+    <color rgba="0.5 0 0.5 1"/>
+</material>
+<material name="gray">
+    <color rgba="0.5 0.5 0.5 1"/>
+</material>
+<material name="light_blue">
+    <color rgba="0.678 0.847 0.902 1"/>
+</material>
+<material name="dark_green">
+    <color rgba="0 0.5 0 1"/>
+</material>
 
-<link name="base_link">
-<visual>
-<geometry>
-    <mesh filename="package://siro_arm/models/meshes/visual/Ensamble_1.stl"/>
-  </geometry>
-</visual> 
+  <link name="world"/>
 
-</link>
+  <link name="part1">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/visual/Ensamble_1.stl"/>
+      </geometry>
+      <material name="blue"/>
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/collision/Ensamble_1.dae"/>
+      </geometry>
+    </collision>
+  </link>
 
-<link name="link_1">
-<visual>
-<geometry>
-    <mesh filename="package://siro_arm/models/meshes/visual/Ensamble_2.stl"/>
-  </geometry>
-</visual> 
-
-</link>
-
-
-
-
-<joint name="fixed" type="fixed">
+  <joint name="fixed_joint" type="fixed">
     <parent link="world"/>
-    <child link="base_link"/>
-</joint>
+    <child link="part1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
 
-<joint name="joint_1" type="revolute">
-<parent link="base_link"/>
-<child link="link_1"/>
-<origin xyz="0 0 5" rpy="0 0 0"/>
-<axis xyz="0 0 1"/>
-<limit lower="-1.57" upper="1.57" effort="0" velocity="0.5"/>
-</joint>
+  <link name="part2">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/visual/Ensamble_2.stl"/>
+      </geometry>
+      <material name="red"/> 
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/collision/Ensamble_2.dae"/>
+      </geometry>
+    </collision>
+  </link>
 
+  <joint name="joint_1" type="revolute">
+    <parent link="part1"/>
+    <child link="part2"/>
+    <origin xyz="0 0 0.6367" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
 
-  <gazebo reference="camera_link">
-    <sensor name="depth_camera" type="depth">
-      <visualize>true</visualize>
-      <update_rate>30.0</update_rate>
-      <camera name="camera">
-        <horizontal_fov>1.047198</horizontal_fov>
-        <image>
-          <width>640</width>
-          <height>480</height>
-          <format>R8G8B8</format>
-        </image>
-        <clip>
-          <near>0.05</near>
-          <far>3</far>
-        </clip>
-      </camera>
-      <plugin name="depth_camera_controller" filename="libgazebo_ros_camera.so">
-        <baseline>0.2</baseline>
-        <alwaysOn>true</alwaysOn>
-        <updateRate>0.0</updateRate>
-        <frame_name>camera_depth_frame</frame_name>
-        <pointCloudCutoff>0.5</pointCloudCutoff>
-        <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
-        <distortionK1>0</distortionK1>
-        <distortionK2>0</distortionK2>
-        <distortionK3>0</distortionK3>
-        <distortionT1>0</distortionT1>
-        <distortionT2>0</distortionT2>
-        <CxPrime>0</CxPrime>
-        <Cx>0</Cx>
-        <Cy>0</Cy>
-        <focalLength>0</focalLength>
-        <hackBaseline>0</hackBaseline>
-      </plugin>
-    </sensor>
+<link name="part3">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/visual/Ensamble_3.stl"/>
+      </geometry>
+      <material name="green"/> 
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/collision/Ensamble_3.dae"/>
+      </geometry>
+    </collision>
+  </link>
 
-    <sensor name="my_camera_sensor" update_rate="20">
-      <parent link="optical_frame_link_name"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <camera>
-        <image width="640" height="480" hfov="1.5708" format="RGB8" near="0.01" far="50.0"/>
-      </camera>
-    </sensor>
+  <joint name="joint_2" type="revolute">
+    <parent link="part2"/>
+    <child link="part3"/>
+    <origin xyz="0.194649 0.152205 0.247295" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
 
-  </gazebo>
+<link name="part4">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/visual/Ensamble_4.stl"/>
+      </geometry>
+      <material name="orange"/> 
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/collision/Ensamble_4.dae"/>
+      </geometry>
+    </collision>
+  </link>
 
+  <joint name="joint_3" type="revolute">
+    <parent link="part3"/>
+    <child link="part4"/>
+    <origin xyz="0 0 1.23" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
 
+<link name="part5">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/visual/Ensamble_5.stl"/>
+      </geometry>
+      <material name="gray"/> 
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/collision/Ensamble_5.dae"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_4" type="revolute">
+    <parent link="part4"/>
+    <child link="part5"/>
+    <origin xyz="1.2196 -0.401701 -0.009168" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
+
+  <link name="part6">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/visual/Ensamble_6.stl"/>
+      </geometry>
+      <material name="magenta"/> 
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/models/meshes/collision/Ensamble_6.dae"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_5" type="revolute">
+    <parent link="part5"/>
+    <child link="part6"/>
+    <origin xyz="0.606218 0.228952 0.118208" rpy="0 -0.10853 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
 
 </robot>

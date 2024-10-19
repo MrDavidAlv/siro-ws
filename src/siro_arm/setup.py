@@ -14,12 +14,11 @@ setup(
         ('share/' + package_name, ['package.xml']),
         # Incluir archivos URDF
         (os.path.join('share', package_name, 'urdf'), glob('urdf/*.urdf')),
-        (os.path.join('share', package_name, 'urdf'), glob('urdf/*.xacro')),
         # Incluir archivos STL (meshes) dentro de urdf/meshes
         (os.path.join('share', package_name, 'models', 'meshes', 'visual'), glob('models/meshes/visual/*.stl')),
+        (os.path.join('share', package_name, 'models', 'meshes', 'collision'), glob('models/meshes/collision/*.dae')),
         # Incluir archivos STL (meshes) dentro de urdf/meshes
         (os.path.join('share', package_name, 'models', 'meshes', 'v_bot'), glob('models/meshes/v_bot/*.stl')),
-        # Incluir archivos DAE (meshes) dentro de urdf/meshes
         (os.path.join('share', package_name, 'models', 'meshes', 'c_bot'), glob('models/meshes/c_bot/*.dae')),
         # Incluir archivos de lanzamiento
         (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),

@@ -7,7 +7,7 @@ import sys
 class TurtleJoyControl(Node):
     def __init__(self):
         super().__init__('TurtleJoyControl')
-        self.publisher = self.create_publisher(Twist, 'turtle1/cmd_vel', 10)
+        self.publisher = self.create_publisher(Twist, '/cmd_vel', 10)
         pygame.init()
         pygame.joystick.init()
 
