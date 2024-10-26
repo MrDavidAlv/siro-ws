@@ -4,7 +4,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
-    urdf_file = os.path.join(get_package_share_directory('siro_arm'), 'urdf', 'arm1.urdf')
+    urdf_file = os.path.join(get_package_share_directory('siro_arm'), 'urdf', 'siro_arm.urdf')
 
     with open(urdf_file, 'r') as file:
         robot_description = file.read()
