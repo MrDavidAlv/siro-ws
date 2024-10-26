@@ -1,0 +1,199 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="arm1">
+    <static>false</static>
+    
+    <!-- Materiales definidos como referencias -->
+    <material name="blue">
+      <ambient>0 0 0.8 1</ambient>
+      <diffuse>0 0 0.8 1</diffuse>
+    </material>
+    <material name="red">
+      <ambient>1 0 0 1</ambient>
+      <diffuse>1 0 0 1</diffuse>
+    </material>
+    <material name="green">
+      <ambient>0 1 0 1</ambient>
+      <diffuse>0 1 0 1</diffuse>
+    </material>
+    <material name="orange">
+      <ambient>1 0.5 0 1</ambient>
+      <diffuse>1 0.5 0 1</diffuse>
+    </material>
+    <material name="gray">
+      <ambient>0.5 0.5 0.5 1</ambient>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+    </material>
+    <material name="magenta">
+      <ambient>1 0 1 1</ambient>
+      <diffuse>1 0 1 1</diffuse>
+    </material>
+    
+    <!-- Definición de partes del brazo -->
+    <link name="part1">
+      <visual name="visual">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/visual/Ensamble_1.stl"/>
+        </geometry>
+        <material>blue</material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/collision/Ensamble_1.dae"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="part2">
+      <visual name="visual">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/visual/Ensamble_2.stl"/>
+        </geometry>
+        <material>red</material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/collision/Ensamble_2.dae"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="part3">
+      <visual name="visual">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/visual/Ensamble_3.stl"/>
+        </geometry>
+        <material>green</material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/collision/Ensamble_3.dae"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="part4">
+      <visual name="visual">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/visual/Ensamble_4.stl"/>
+        </geometry>
+        <material>orange</material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/collision/Ensamble_4.dae"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="part5">
+      <visual name="visual">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/visual/Ensamble_5.stl"/>
+        </geometry>
+        <material>gray</material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/collision/Ensamble_5.dae"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="part6">
+      <visual name="visual">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/visual/Ensamble_6.stl"/>
+        </geometry>
+        <material>magenta</material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <mesh uri="model://siro_arm/meshes/collision/Ensamble_6.dae"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Definición de juntas -->
+    <joint name="fixed_joint" type="fixed">
+      <parent>world</parent>
+      <child>part1</child>
+      <pose>0 0 0 0 0 0</pose>
+    </joint>
+
+    <joint name="joint_1" type="revolute">
+      <parent>part1</parent>
+      <child>part2</child>
+      <pose>0 0 0.6367 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>10</effort>
+          <velocity>1.0</velocity>
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name="joint_2" type="revolute">
+      <parent>part2</parent>
+      <child>part3</child>
+      <pose>0.194649 0.152205 0.247295 0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>10</effort>
+          <velocity>1.0</velocity>
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name="joint_3" type="revolute">
+      <parent>part3</parent>
+      <child>part4</child>
+      <pose>0 0 1.23 0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>10</effort>
+          <velocity>1.0</velocity>
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name="joint_4" type="revolute">
+      <parent>part4</parent>
+      <child>part5</child>
+      <pose>1.2196 -0.401701 -0.009168 0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>10</effort>
+          <velocity>1.0</velocity>
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name="joint_5" type="revolute">
+      <parent>part5</parent>
+      <child>part6</child>
+      <pose>0.606218 0.228952 0.118208 0 -0.10853 0</pose>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>10</effort>
+          <velocity>1.0</velocity>
+        </limit>
+      </axis>
+    </joint>
+  </model>
+</sdf>
