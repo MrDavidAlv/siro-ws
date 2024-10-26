@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot name="arm1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Definición de materiales -->
+  <xacro:macro name="define_material" params="name color">
+    <material name="${name}">
+      <color rgba="${color}"/>
+    </material>
+  </xacro:macro>
+
+  <xacro:define_material name="blue" color="0 0 0.8 1"/>
+  <xacro:define_material name="white" color="1 1 1 1"/>
+  <xacro:define_material name="red" color="1 0 0 1"/>
+  <xacro:define_material name="green" color="0 1 0 1"/>
+  <xacro:define_material name="yellow" color="1 1 0 1"/>
+  <xacro:define_material name="cyan" color="0 1 1 1"/>
+  <xacro:define_material name="magenta" color="1 0 1 1"/>
+  <xacro:define_material name="orange" color="1 0.5 0 1"/>
+  <xacro:define_material name="purple" color="0.5 0 0.5 1"/>
+  <xacro:define_material name="gray" color="0.5 0.5 0.5 1"/>
+  <xacro:define_material name="light_blue" color="0.678 0.847 0.902 1"/>
+  <xacro:define_material name="dark_green" color="0 0.5 0 1"/>
+
+  <link name="world"/>
+
+  <!-- Macro para definir un enlace con visual y colisión -->
+  <xacro:macro name="define_link" params="name visual_file collision_file material_name">
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <mesh filename="${visual_file}"/>
+        </geometry>
+        <material name="${material_name}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="${collision_file}"/>
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <!-- Definición de enlaces -->
+  <xacro:define_link name="part1" visual_file="package://siro_arm/meshes/visual/Ensamble_1.stl" collision_file="package://siro_arm/meshes/collision/Ensamble_1.dae" material_name="blue"/>
+  <xacro:define_link name="part2" visual_file="package://siro_arm/meshes/visual/Ensamble_2.stl" collision_file="package://siro_arm/meshes/collision/Ensamble_2.dae" material_name="red"/>
+  <xacro:define_link name="part3" visual_file="package://siro_arm/meshes/visual/Ensamble_3.stl" collision_file="package://siro_arm/meshes/collision/Ensamble_3.dae" material_name="green"/>
+  <xacro:define_link name="part4" visual_file="package://siro_arm/meshes/visual/Ensamble_4.stl" collision_file="package://siro_arm/meshes/collision/Ensamble_4.dae" material_name="orange"/>
+  <xacro:define_link name="part5" visual_file="package://siro_arm/meshes/visual/Ensamble_5.stl" collision_file="package://siro_arm/meshes/collision/Ensamble_5.dae" material_name="gray"/>
+  <xacro:define_link name="part6" visual_file="package://siro_arm/meshes/visual/Ensamble_6.stl" collision_file="package://siro_arm/meshes/collision/Ensamble_6.dae" material_name="magenta"/>
+
+  <!-- Macro para definir uniones -->
+  <xacro:macro name="define_joint" params="name type parent child origin_xyz origin_rpy axis lower upper effort velocity">
+    <joint name="${name}" type="${type}">
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+      <axis xyz="${axis}"/>
+      <limit lower="${lower}" upper="${upper}" effort="${effort}" velocity="${velocity}"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Definición de uniones -->
+  <xacro:define_joint name="fixed_joint" type="fixed" parent="world" child="part1" origin_xyz="0 0 0" origin_rpy="0 0 0" axis="0 0 1" lower="0" upper="0" effort="0" velocity="0"/>
+  <xacro:define_joint name="joint_1" type="revolute" parent="part1" child="part2" origin_xyz="0 0 0.6367" origin_rpy="0 0 0" axis="0 0 1" lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  <xacro:define_joint name="joint_2" type="revolute" parent="part2" child="part3" origin_xyz="0.194649 0.152205 0.247295" origin_rpy="0 0 0" axis="0 1 0" lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  <xacro:define_joint name="joint_3" type="revolute" parent="part3" child="part4" origin_xyz="0 0 1.23" origin_rpy="0 0 0" axis="0 1 0" lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  <xacro:define_joint name="joint_4" type="revolute" parent="part4" child="part5" origin_xyz="1.2196 -0.401701 -0.009168" origin_rpy="0 0 0" axis="0 1 0" lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  <xacro:define_joint name="joint_5" type="revolute" parent="part5" child="part6" origin_xyz="0.606218 0.228952 0.118208" origin_rpy="0 -0.10853 0" axis="1 0 0" lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+</robot>

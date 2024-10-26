@@ -14,6 +14,8 @@
   <depend>xacro</depend>
   <depend>rclpy</depend>
   <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>pygame</depend> 
 
   <!-- Dependencies for testing -->
   <test_depend>ament_copyright</test_depend>

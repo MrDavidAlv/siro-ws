@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<robot name="arm1">
+
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+</material>
+<material name="green">
+    <color rgba="0 1 0 1"/>
+</material>
+<material name="yellow">
+    <color rgba="1 1 0 1"/>
+</material>
+<material name="cyan">
+    <color rgba="0 1 1 1"/>
+</material>
+<material name="magenta">
+    <color rgba="1 0 1 1"/>
+</material>
+<material name="orange">
+    <color rgba="1 0.5 0 1"/>
+</material>
+<material name="purple">
+    <color rgba="0.5 0 0.5 1"/>
+</material>
+<material name="gray">
+    <color rgba="0.5 0.5 0.5 1"/>
+</material>
+<material name="light_blue">
+    <color rgba="0.678 0.847 0.902 1"/>
+</material>
+<material name="dark_green">
+    <color rgba="0 0.5 0 1"/>
+</material>
+
+  <link name="world"/>
+
+  <link name="part1">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/visual/Ensamble_1.stl"/>
+      </geometry>
+      <material name="blue"/>
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/collision/Ensamble_1.dae"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="fixed_joint" type="fixed">
+    <parent link="world"/>
+    <child link="part1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="part2">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/visual/Ensamble_2.stl"/>
+      </geometry>
+      <material name="red"/> 
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/collision/Ensamble_2.dae"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_1" type="revolute">
+    <parent link="part1"/>
+    <child link="part2"/>
+    <origin xyz="0 0 0.6367" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
+
+<link name="part3">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/visual/Ensamble_3.stl"/>
+      </geometry>
+      <material name="green"/> 
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/collision/Ensamble_3.dae"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_2" type="revolute">
+    <parent link="part2"/>
+    <child link="part3"/>
+    <origin xyz="0.194649 0.152205 0.247295" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
+
+<link name="part4">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/visual/Ensamble_4.stl"/>
+      </geometry>
+      <material name="orange"/> 
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/collision/Ensamble_4.dae"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_3" type="revolute">
+    <parent link="part3"/>
+    <child link="part4"/>
+    <origin xyz="0 0 1.23" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
+
+<link name="part5">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/visual/Ensamble_5.stl"/>
+      </geometry>
+      <material name="gray"/> 
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/collision/Ensamble_5.dae"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_4" type="revolute">
+    <parent link="part4"/>
+    <child link="part5"/>
+    <origin xyz="1.2196 -0.401701 -0.009168" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
+
+  <link name="part6">
+    <visual>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/visual/Ensamble_6.stl"/>
+      </geometry>
+      <material name="magenta"/> 
+    </visual> 
+    <collision>
+      <geometry>
+        <mesh filename="package://siro_arm/meshes/collision/Ensamble_6.dae"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_5" type="revolute">
+    <parent link="part5"/>
+    <child link="part6"/>
+    <origin xyz="0.606218 0.228952 0.118208" rpy="0 -0.10853 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
+
+</robot>
