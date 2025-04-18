@@ -1,19 +1,13 @@
-# 🎯PROYECTO ROS2 HUMBLE 🤖🚀🕹️
-
-
-<!--div id="header" align="center" style="text-align: center; white-space: nowrap">
-    <img src="/images/ros2.gif" title="ros2" alt="ros2" width="300px"/>
-    <img src="/images/humble.png" title="humble" alt="humble" width="150px"/>
-</div-->
+# 🎯APRENDIENDO  SOBRE ROS 🤖🚀🕹️
 
 <div id="header" align="center">
-    <img src="/images/ros-image2.png" alt="ros humble" width="60%" max-width="100%">
+    <img src="/images/ros-image2.png" alt="ros humble" width="50%" max-width="100%">
 </div>
 
 
-`ROS2` (Robot Operating System 2) es una plataforma de código abierto diseñada para facilitar el desarrollo, operación y mantenimiento de sistemas robóticos y de automatización industrial. Ofrece una arquitectura modular y flexible que permite la comunicación entre componentes distribuidos, soportando una variedad de sistemas operativos y arquitecturas de hardware. ROS 2 se destaca por su capacidad de escalabilidad, seguridad y robustez, lo que lo convierte en una herramienta crucial para la creación de sistemas robóticos avanzados en diversos entornos industriales y de investigación.
+**ROS2** (*Robot Operating System 2*) es una plataforma de código abierto diseñada para facilitar el desarrollo, operación y mantenimiento de sistemas robóticos y de automatización industrial. Ofrece una arquitectura modular y flexible que permite la comunicación entre componentes distribuidos, soportando una variedad de sistemas operativos y arquitecturas de hardware. ROS 2 se destaca por su capacidad de escalabilidad, seguridad y robustez, lo que lo convierte en una herramienta crucial para la creación de sistemas robóticos avanzados en diversos entornos industriales y de investigación.
 
-### Historia
+## Historia
 
 **ROS** en su primera versión, **ROS1**, se desarrolló en los Laboratorios de Inteligencia Artificial de Stanford (SAIL) por estudiantes de doctorado **Eric Berger** y **Keenan Wyrobek**. Se publicó bajo una **licencia BSD** de software libre en 2007, que permite libertad para uso comercial e investigador. Desde 2008, el instituto **Willow Garage** se ha encargado principalmente del desarrollo y soporte.
 
@@ -21,21 +15,23 @@ La idea de crear un sistema operativo era estandarizar tareas como la *abstracci
 
 **ROS2** es la evolución natural del exitoso marco de trabajo **ROS1**. Desarrollado para abordar las limitaciones de su predecesor, ROS2 ofrece una *arquitectura modular* y *distribuida*, mejor *rendimiento* y *escalabilidad*, así como soporte *multiplataforma*. Lanzado oficialmente en 2015, ROS2 mantiene la *flexibilidad* y *robustez* de ROS1, al tiempo que introduce mejoras significativas en herramientas de desarrollo y comunicación. Su diseño modular permite una fácil integración con otros sistemas y una adaptación más rápida a diferentes entornos de desarrollo. Con características como compatibilidad con múltiples lenguajes de programación y una creciente comunidad de desarrolladores, ROS2 es la elección preferida para proyectos de robótica modernos y ambiciosos.
 
-#### Filosofía
-*"ROS, nacido del corazón del código abierto, ofrece libertad y flexibilidad para que los usuarios moldeen su propia realidad robótica, trazando un camino lleno de posibilidades infinitas en el vasto horizonte de la tecnología"*.
+## Filosofía
+***"ROS, nacido del corazón del código abierto, ofrece libertad y flexibilidad para que los usuarios moldeen su propia realidad robótica, trazando un camino lleno de posibilidades infinitas en el vasto horizonte de la tecnología"***.
 
 
-#### DIFERENCIAS 
+## DIFERENCIAS ENTRE ROS1 Y ROS2
 
-| Característica               | ROS 1                                                          | ROS 2                                                              |
-|------------------------------|----------------------------------------------------------------|--------------------------------------------------------------------|
-| **Arquitectura**             | Basada en un sistema de nodos con comunicación XML-RPC y TCP/IP | Arquitectura modular y distribuida, comunicación basada en DDS    |
-| **Lenguajes de Programación**| Soporte para C++, Python, Lisp, entre otros                   | Soporte para varios lenguajes, incluyendo C++, Python, y más      |
-| **Rendimiento**              | Limitaciones en rendimiento, seguridad y escalabilidad         | Mejoras significativas en rendimiento, seguridad y escalabilidad  |
-| **Multiplataforma**          | Principalmente enfocado en Linux                               | Soporte multiplataforma incluyendo Linux, Windows, y macOS        |
-| **Herramientas**             | Herramientas de desarrollo y depuración limitadas              | Mejoras en herramientas de depuración, simulación, y gestión de paquetes |
-| **Compatibilidad**           | No es directamente compatible con ROS 2                        | Introduce puentes y herramientas de migración para la compatibilidad con ROS 1 |
-| **Ecosistema**               | Ecosistema consolidado con una amplia comunidad                 | Ecosistema en constante crecimiento con una creciente comunidad de desarrolladores |
+| Característica        | ROS1          | ROS2        |
+|-----------------------|---------------|-------------|
+| **Arquitectura**  | Basada en un sistema de nodos con comunicación XML-RPC y TCP/IP | Arquitectura modular y distribuida, comunicación basada en DDS    |
+| **Lenguajes de Programación** | Soporte para C++, Python, Lisp, entre otros                   | Soporte para varios lenguajes, incluyendo C++, Python, y más      |
+| **Rendimiento** | Limitaciones en rendimiento, seguridad y escalabilidad         | Mejoras significativas en rendimiento, seguridad y escalabilidad  |
+| **Multiplataforma** | Principalmente enfocado en Linux                               | Soporte multiplataforma incluyendo Linux, Windows, y macOS        |
+| **Herramientas**  | Herramientas de desarrollo y depuración limitadas              | Mejoras en herramientas de depuración, simulación, y gestión de paquetes |
+| **Compatibilidad**  | No es directamente compatible con ROS 2                        | Introduce puentes y herramientas de migración para la compatibilidad con ROS 1 |
+| **Ecosistema**  | Ecosistema consolidado con una amplia comunidad                 | Ecosistema en constante crecimiento con una creciente comunidad de desarrolladores |
+
+
 
 
 ## Arquitectura ROS2
@@ -54,17 +50,17 @@ La arquitectura de ROS2 se ha diseñado para abordar las limitaciones de ROS1 y 
 
 En resumen, la arquitectura de ROS2 se caracteriza por su modularidad, su sistema de comunicación basado en DDS, su soporte multiplataforma y su capacidad para gestionar eficientemente los recursos del sistema. Estas características hacen de ROS2 una plataforma poderosa y versátil para el desarrollo de aplicaciones robóticas modernas.
 
-
+<br>
 <div id="header" align="center">
     <img src="/images/arquitectura.png" alt="Arquitectura de ros" width="50%" max-width="100%">
 </div>
 
 <br>
 
-### NODOS
+## NODOS
 Los nodos son bloques de código (clases) que se encargan de partes específicas de las actividades del robot. Estos se van a enlazar mediante tópicos, servicios o acciones. Básicamente nos ayudan a crear un sistema modular que se pueda modificar fácilmente y comunicar.
 
-##### Comandos básicos
+### Comandos básicos
 Usaremos el paquete turtlesim que puedes instalar [`aquí`](./turtlesim/README.md).
 
 1. Ejecutar un nodo.
@@ -144,10 +140,10 @@ En este caso vemos la información del nodo `/turtlesim`
 
 <br>
 
-### TOPICOS
+## TOPICOS
 Son canales en los cuales unos nodos publican información y otros se suscriben para recibirla. La relación para la comunicación puede ser de  *muchos a uno*(one to many), *muchos a uno*(many to one) y *muchos a muchos*(many to many).
 
-##### Caraterísticas de los tópicos
+### Caraterísticas de los tópicos
 - **Definición de Tópicos**:
 Canales de comunicación identificados por un nombre único.
 - **Tipos de Mensajes**:
@@ -166,7 +162,7 @@ Los nodos pueden usar tópicos privados para encapsular la comunicación dentro 
 Herramientas como `ros2 topic list` y `ros2 topic echo` permiten gestionar y monitorear los tópicos.
 
 
-##### Clasificación
+### Clasificación
 
 En cuanto a los tipos de tópicos, no hay una clasificación específica de los tópicos en sí; más bien, los tópicos se definen por el tipo de mensajes que manejan y el propósito de los nodos que los utilizan.
 
@@ -383,7 +379,7 @@ ROS 2 proporciona una variedad de tipos de mensajes estándar definidos en vario
 
 
 
-##### Comandos básicos
+### Comandos básicos
 1. Para ver los topicos de los nodos `turtlesim` y `teleop_key` que previamente deben estar ejecución usamos la siguiente instrucción
 
 ```bash
@@ -512,7 +508,7 @@ Retorna la velocidad de publicación.
 
 <br>
 
-### SERVICIOS
+## SERVICIOS
 
 En ROS 2, los servicios son un mecanismo de comunicación que permite a los nodos intercambiar datos de forma *síncrona*. A través de los servicios, un nodo (el servidor) puede ofrecer una funcionalidad específica que otros nodos (los clientes) pueden solicitar. Cuando un cliente hace una solicitud a un servicio, espera una respuesta inmediata del servidor. Esto es diferente de los temas (o topics), que son de naturaleza *asíncrona*.
 
@@ -526,7 +522,7 @@ Un servicio en ROS 2 tiene tres componentes principales:
 
 Este patrón de solicitud-respuesta es útil para cuando se necesita una interacción puntual y sincrónica entre nodos, en contraste con el modelo de publicación-suscripción que es más adecuado para comunicaciones asíncronas y continuas.
 
-##### Clasificación
+### Clasificación
 
 1. **Servicios estándar**:
 En ROS2, hay varios servicios estándar que forman parte de los paquetes básicos de ROS2 y proporcionan funcionalidad común que es útil para muchas aplicaciones.
@@ -549,7 +545,7 @@ En ROS2, hay varios servicios estándar que forman parte de los paquetes básico
 Los servicios no estándar son aquellos definidos por los desarrolladores para aplicaciones específicas. Estos servicios pueden variar ampliamente según el ámbito de la aplicación, el paquete ROS 2 utilizado y los requerimientos del sistema. Los archivos .srv dentro de los paquetes describen los servicios específicos.
 
 
-##### Comandos básicos
+### Comandos básicos
 
 1. Listar servicios.
 ```bash
@@ -665,7 +661,7 @@ turtlesim.srv.Spawn_Response(name='tortuga_mario')
 
 <br>
 
-### ACCIONES
+## ACCIONES
 
 Las acciones en ROS 2 permiten a los nodos ejecutar tareas complejas de forma asíncrona, con retroalimentación y capacidad de cancelación. Son útiles para operaciones que requieren tiempo y seguimiento.
 
@@ -676,18 +672,18 @@ Una acción tiene tres componentes:
 3. **Feedback**: Información intermedia que el servidor envía al cliente durante la ejecución.
 
 
-##### Tipos de Acciones
+### Tipos de Acciones
 
 - **Simple**: e envía un solo objetivo, el servidor procesa y devuelve un resultado.
 - **Compuesta**: Involucra varios pasos o sub-tareas secuenciales, con feedback entre cada uno.
 
-##### Sistemas
+### Sistemas
 
 - **actionlib**: Sistema de acciones de ROS 1, compatible en ROS 2 mediante un puente.
 - **rcl_action**: Sistema nativo de ROS 2, más eficiente y flexible.
 
 
-##### Comandos
+### Comandos
 Ejecutar el nodo `turtle_teleop_key`, el cual permite controlar la tortuga:
 ```bash
 ros2 run turtlesim turtle_teleop_key
@@ -869,25 +865,260 @@ Result:
 Goal finished with status: SUCCEEDED
 ```
 
+## INTERFACES
+En ROS 2, las interfaces definen cómo se comunican los nodos entre sí mediante mensajes, servicios o acciones. Son plantillas que describen los datos que se intercambian en las comunicaciones.
 
+
+### Tipos de Interfaces en ROS 2:
+
+  1. **Mensajes (Messages)**: Definen los datos enviados en un tema (topic). Se usan para comunicaciones asíncronas.
+
+      *Ejemplo*: `std_msgs/String` (mensaje con una cadena de texto).
+      </br>
+  2. **Servicios (Services)**: Permiten la comunicación sincrónica entre un cliente y un servidor, con una solicitud y una respuesta.
+
+        *Ejemplo*: `std_srvs/SetBool` (envía un booleano y recibe una respuesta).
+        </br>
+
+  3. **Acciones (Actions)**: Extienden los servicios para operaciones que pueden llevar más tiempo, permitiendo enviar retroalimentación y resultados parciales mientras se ejecuta.
+
+      *Ejemplo*: `action_msgs/GoalStatusArray` (monitorea el progreso de una acción).
+
+### Clasificación:
+
+  1. **Predefinidas**: ROS 2 incluye muchas interfaces listas para usar.
+
+  2. **Personalizadas**: Los desarrolladores pueden crear sus propias interfaces según los requisitos de su aplicación.
+
+
+
+  Las interfaces se definen en archivos `.msg`, `.srv`, o .`action`.
+  ROS 2 utiliza DDS para gestionar la comunicación y garantizar el envío de datos de las interfaces entre los nodos.
+
+### Comandos
+1. Listar todas las interfaces:
+```bash
+ros2 interface list
+```
+2. Listar solo las interfaces de acciones:
+```bash
+ros2 interface list | grep action
+```
+3. Mostrar los detalles de una interfaz de acción:
+```bash
+ros2 interface show turtlesim/action/RotateAbsolute
+```
+4. Mostrar la interfaz de un mensaje o servicio específico.
+- Para mensajes:
+```bash
+ros2 interface show geometry_msgs/msg/Twist
+```
+- Para servicios:
+```bash
+ros2 interface show turtlesim/srv/TeleportAbsolute
+```
+
+## LAUNCH
+En ROS 2, los launch files (archivos de lanzamiento) son scripts que se utilizan para iniciar y configurar nodos y sistemas completos. Estos archivos permiten ejecutar varios nodos simultáneamente, establecer parámetros, definir remapeos de temas y configurar acciones o servicios, todo en un solo comando.
+
+### Características principales:
+
+  1. **Lenguaje**: Los launch files en ROS 2 están escritos en Python.
+  Modularidad: Permiten lanzar múltiples nodos a la vez.
+  2. **Configuración**: Puedes establecer parámetros, remapear temas y configurar dependencias entre nodos.
+  3. **Reusabilidad**: Se pueden crear composiciones de nodos y reutilizar archivos launch en diferentes proyectos.
+
+Ejemplo:
+```bash
+ros2 launch <nombre_paquete> <archivo_launch.py>
+```
+
+
+</br></br>
 ---
-### Trabajando con ROS
+
+## Trabajando con ROS
 Instalación de dependencias para ROS: 
 ```bash
 ros2 apt install python3-colcon-common-extensions
 ```
-#### Creando un espacio de trabajo
+### Creando un espacio de trabajo
 1. Creación del workspace.
 
-```mkdir -p siro_ws/src```
+```
+mkdir -p siro_ws/src
+```
 
 2. Ingresamos a `siro_ws`
 
-```cd siro_ws```
+```
+cd siro_ws
+```
 
 3. Compilación del proyecto
 
- ```colcon build```
+ ```
+ colcon build
+ ```
+
+### Creando un paquete python
+Creando un paquete con `python`
+```
+ros2 pkg create --build-type ament_python --node-name primer_nodo paquete_python
+```
+
+ahora compilar el paquete y leer el compilado del proyecto
+```
+cd ~/siro-ws/
+colcon build --packages-select paquete_python
+
+source install/setup.bash
+```
+Ahora si corremos el nodo
+```
+ros2 run paquete_python primer_nodo
+```
+| Método    | Tema | Descripción | Ejemplo de Uso  |
+|-----------|------|-------------|-----------------|
+| **Nodos** |      |             |                 |
+| `rclpy.init()`                    | Nodo      | Inicializa la biblioteca rclpy.                             | `rclpy.init()`                              |
+| `Node()`                          | Nodo      | Crea un nodo en el sistema ROS 2.                           | `node = rclpy.create_node('nombre_del_nodo')` |
+| `get_logger()`                    | Nodo      | Obtiene el objeto logger para imprimir mensajes de registro. | `logger = node.get_logger()<br>logger.info('Mensaje de información')` |
+| `spin()`                          | Nodo      | Mantiene el nodo en ejecución, procesando callbacks.        | `rclpy.spin(node)`                          |
+| `shutdown()`                      | Nodo      | Apaga la biblioteca rclpy y destruye el nodo.              | `rclpy.shutdown()`                          |
+| **Tópicos** |      |             |                 |
+| `create_subscription()`           | Tópico    | Crea un suscriptor para recibir mensajes de un tópico.      | `subscription = node.create_subscription(<br>    std_msgs.msg.String, 'topic', callback_function)` |
+| `create_publisher()`              | Tópico    | Crea un publicador para enviar mensajes a un tópico.        | `publisher = node.create_publisher(<br>    std_msgs.msg.String, 'topic', 10)` |
+| `publish()`                       | Tópico    | Publica un mensaje a un tópico.                             | `msg = std_msgs.msg.String(data='Hola, ROS2')<br>publisher.publish(msg)` |
+| `destroy_subscription()`          | Tópico    | Destruye un suscriptor específico.                           | `node.destroy_subscription(subscription)`   |
+| `destroy_publisher()`             | Tópico    | Destruye un publicador específico.                           | `node.destroy_publisher(publisher)`         |
+| **Servicios** |      |             |                 |
+| `create_service()`                | Servicio  | Crea un servicio para manejar solicitudes y respuestas.      | `service = node.create_service(<br>    std_srvs.srv.SetBool, 'service_name', callback_function)` |
+| `call_service()`                  | Servicio  | Llama a un servicio y espera su respuesta.                  | `client = node.create_client(<br>    std_srvs.srv.SetBool, 'service_name')<br>response = client.call_async(request)` |
+| `destroy_service()`               | Servicio  | Destruye un servicio específico.                             | `node.destroy_service(service)`             |
+| **Acciones** |      |             |                 |
+| `create_action_server()`          | Acción     | Crea un servidor de acción para gestionar acciones.          | `action_server = rclpy.action.ActionServer(node,<br>    MyAction, 'action_name', execute_callback)` |
+| `create_action_client()`          | Acción     | Crea un cliente de acción para enviar metas a un servidor.   | `action_client = rclpy.action.ActionClient(node,<br>    MyAction, 'action_name')` |
+| `send_goal()`                     | Acción     | Envía un objetivo al servidor de acción.                     | `goal_handle = action_client.send_goal_async(goal)` |
+| `wait_for_result()`               | Acción     | Espera el resultado de una acción después de enviar un objetivo. | `result_future = action_client.wait_for_result(goal_handle)` |
+| `get_result()`                    | Acción     | Obtiene el resultado de la acción completada.               | `result = result_future.result()`           |
+| `destroy_action_server()`         | Acción     | Destruye un servidor de acción específico.                  | `action_server.destroy()`                    |
+| `destroy_action_client()`         | Acción     | Destruye un cliente de acción específico.                   | `action_client.destroy()`                    |
+
+
+#### Creando un paquete cmake
+Creando un paquete con `c++`
+```
+ros2 pkg create --build-type ament_cmake --node-name primer_nodo_cpp paquete_cpp
+```
+
+```
+cd ~/siro-ws/
+colcon build --packages-select paquete_cpp
+
+source install/setup.bash
+```
+Ahora si corremos el nodo
+```
+ros2 run paquete_cpp primer_nodo_cpp
+```
+| Método                                | Tema      | Descripción                                                  | Ejemplo de Uso                                                 |
+|---------------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------|
+| **Nodos**                             |           |                                                              |                                                               |
+| `rclcpp::init()`                     | Nodo      | Inicializa la biblioteca rclcpp.                            | `rclcpp::init(argc, argv);`                   |
+| `std::make_shared<Node>()`           | Nodo      | Crea un nodo en el sistema ROS 2.                           | `auto node = std::make_shared<rclcpp::Node>("nombre_del_nodo");` |
+| `get_logger()`                        | Nodo      | Obtiene el objeto logger para imprimir mensajes de registro. | `RCLCPP_INFO(node->get_logger(), "Mensaje de información");` |
+| `spin()`                              | Nodo      | Mantiene el nodo en ejecución, procesando callbacks.        | `rclcpp::spin(node);`                         |
+| `shutdown()`                          | Nodo      | Apaga la biblioteca rclcpp y destruye el nodo.             | `rclcpp::shutdown();`                          |
+| **Tópicos**                           |           |                                                              |                                                               |
+| `create_subscription()`               | Tópico    | Crea un suscriptor para recibir mensajes de un tópico.      | `auto subscription = node->create_subscription<std_msgs::msg::String>(<br>    "topic", callback_function);` |
+| `create_publisher()`                  | Tópico    | Crea un publicador para enviar mensajes a un tópico.        | `auto publisher = node->create_publisher<std_msgs::msg::String>("topic", 10);` |
+| `publish()`                           | Tópico    | Publica un mensaje a un tópico.                             | `std_msgs::msg::String msg;<br>msg.data = "Hola, ROS2";<br>publisher->publish(msg);` |
+| `destroy_subscription()`              | Tópico    | Destruye un suscriptor específico.                           | `node->destroy_subscription(subscription);`   |
+| `destroy_publisher()`                 | Tópico    | Destruye un publicador específico.                           | `node->destroy_publisher(publisher);`         |
+| **Servicios**                         |           |                                                              |                                                               |
+| `create_service()`                    | Servicio  | Crea un servicio para manejar solicitudes y respuestas.      | `auto service = node->create_service<std_srvs::srv::SetBool>(<br>    "service_name", callback_function);` |
+| `create_client()`                     | Servicio  | Crea un cliente para llamar a un servicio.                  | `auto client = node->create_client<std_srvs::srv::SetBool>("service_name");` |
+| `call_service()`                      | Servicio  | Llama a un servicio y espera su respuesta.                  | `auto future = client->async_send_request(request);` |
+| `destroy_service()`                   | Servicio  | Destruye un servicio específico.                             | `node->destroy_service(service);`             |
+| **Acciones**                          |           |                                                              |                                                               |
+| `create_action_server()`              | Acción     | Crea un servidor de acción para gestionar acciones.          | `auto action_server = rclcpp_action::create_server<MyAction>(<br>    node,<br>    "action_name", execute_callback);` |
+| `create_action_client()`              | Acción     | Crea un cliente de acción para enviar metas a un servidor.   | `auto action_client = rclcpp_action::create_client<MyAction>(node, "action_name");` |
+| `send_goal()`                         | Acción     | Envía un objetivo al servidor de acción.                     | `auto future = action_client->async_send_goal(goal);` |
+| `wait_for_result()`                   | Acción     | Espera el resultado de una acción después de enviar un objetivo. | `auto result_future = action_client->async_get_result(goal_handle);` |
+| `get_result()`                        | Acción     | Obtiene el resultado de la acción completada.               | `auto result = result_future.get();`          |
+| `destroy_action_server()`             | Acción     | Destruye un servidor de acción específico.                  | `action_server->destroy();`                   |
+| `destroy_action_client()`             | Acción     | Destruye un cliente de acción específico.                   | `action_client->destroy();`                   |
+
+
+## CREANDO UN LAUNCH
+
+### Talker y listener en un solo comando
+```python
+from launch import LaunchDescription
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    return LaunchDescription([
+        # Nodo de turtlesim_node
+        Node(
+            package='turtlesim',
+            executable='turtlesim_node',
+            name='turtlesim',
+            output='screen'
+        ),
+        # Nodo de turtle_teleop_key
+        Node(
+            package='turtlesim',
+            executable='turtle_teleop_key',
+            name='teleop_turtle',
+            output='screen'
+        )
+    ])
+```
+
+**Consideraciones**
+1. **En C++**:Modificar el archivo `CMakeLists.txt`:
+
+    Debes asegurarte de que tu archivo launch.py se instale correctamente. 
+
+    Abre el archivo `CMakeLists.txt` en la raíz de tu paquete y añade lo siguiente al final:
+
+    ```cmake
+    install(
+    DIRECTORY launch
+    DESTINATION share/${PROJECT_NAME}
+    )
+    ```
+
+2. **En Python**: modificar el archivo `setup.py`.
+
+    Debes asegurarte de que tu archivo launch.py se instale correctamente. 
+
+    Abre el archivo `setup.py` y añade el directorio:
+    
+    ```python
+    data_files=[
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
+    ],
+    ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -914,9 +1145,21 @@ El **Xacro** es una extensión de XML utilizada para escribir URDF de manera má
 
 El **SDF** (Simulation Description Format) es un formato de archivo XML utilizado en el simulador Gazebo. Describe tanto la geometría como la física de los modelos de robots y entornos de simulación. Mientras que el URDF y el Xacro se centran en la geometría y la cinemática del robot, el SDF agrega información adicional necesaria para la simulación, como propiedades de los materiales, colisiones y restricciones físicas.
 
-<div id="header" align="center">
-    <img src="/images/sdf.jpg" alt="sdf" width="300px">
-</div>
+| Elemento              | Descripción                                                      | Ejemplo de Uso                                               |
+|-----------------------|------------------------------------------------------------------|-------------------------------------------------------------|
+| **`<robot>`**         | Elemento raíz que define el robot.                              | `<robot name="mi_robot">`                                   |
+| **`<link>`**          | Define un link del robot, que representa una parte rígida.      | `<link name="base_link">`                                   |
+| **`<joint>`**         | Define la conexión entre dos links y su tipo de movimiento.     | `<joint name="joint1" type="revolute">`                   |
+| **`<origin>`**        | Especifica la posición y orientación del link o joint.          | `<origin xyz="0 0 0.1" rpy="0 0 0"/>`                      |
+| **`<parent>`**        | Define el link padre en un joint.                               | `<parent link="base_link"/>`                                |
+| **`<child>`**         | Define el link hijo en un joint.                                | `<child link="link1"/>`                                     |
+| **`<visual>`**        | Define la representación visual del link.                       | `<visual><geometry><box size="0.1 0.1 0.1"/></geometry></visual>` |
+| **`<collision>`**     | Define la geometría para las colisiones.                        | `<collision><geometry><cylinder radius="0.05" length="0.1"/></geometry></collision>` |
+| **`<sensor>`**        | Define un sensor asociado al link.                              | `<sensor name="my_sensor" type="camera">...</sensor>`      |
+| **`<material>`**      | Define las propiedades de material, como color.                 | `<material name="red_material"><color rgba="1 0 0 1"/></material>` |
+| **`<include>`**       | Permite incluir otros archivos URDF dentro del archivo actual.  | `<include filename="otro_robot.urdf"/>`                    |
+| **`<transmission>`**  | Define cómo el movimiento se transmite entre los joints y motores. | `<transmission name="transmission1"><actuator name="motor1"/><joint name="joint1"/></transmission>` |
+
 
 
 
@@ -998,5 +1241,36 @@ Realizar el paso 3 y 4 cada vez que se realice un cambio
 
 
 
+## POO con Python
+
+| Concepto                          | Descripción                                                          | Ejemplo de Uso                                                 |
+|-----------------------------------|----------------------------------------------------------------------|---------------------------------------------------------------|
+| **Definición de Clase**           | Define una nueva clase en Python.                                   | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`pass`                                |
+| **Constructor**                   | Método especial que se llama al crear una instancia de la clase.   | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def __init__(self, valor):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`self.valor = valor` |
+| **Método**                        | Función definida dentro de una clase que opera en instancias.      | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def mi_metodo(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return self.valor` |
+| **Herencia**                      | Permite que una clase herede atributos y métodos de otra clase.    | `class ClaseBase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`pass`<br>`class ClaseDerivada(ClaseBase):`<br>&nbsp;&nbsp;&nbsp;&nbsp;`pass` |
+| **Sobrecarga de Métodos**        | Permite definir métodos con el mismo nombre pero diferentes parámetros (no soportado directamente en Python). | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def metodo(self, a):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return a`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def metodo(self, a, b):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return a + b` |
+| **Polimorfismo**                 | Permite que un mismo método tenga diferentes implementaciones en diferentes clases. | `class Animal:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def hacer_sonido(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pass`<br>`class Perro(Animal):`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def hacer_sonido(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return "Guau"`<br>`class Gato(Animal):`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def hacer_sonido(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return "Miau"` |
+| **Encapsulamiento**               | Restringe el acceso a ciertos atributos o métodos dentro de la clase. | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def __init__(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`self.__valor_privado = 10`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def obtener_valor(self):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return self.__valor_privado` |
+| **Atributos de Clase**           | Atributos que pertenecen a la clase en lugar de a instancias individuales. | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`atributo_clase = 0`                |
+| **Atributos de Instancia**       | Atributos que pertenecen a una instancia específica de la clase.   | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def __init__(self, valor):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`self.valor_instancia = valor` |
+| **Método Estático**              | Método que pertenece a la clase y no requiere acceso a la instancia. | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`@staticmethod`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def metodo_estatico():`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return "Hola"` |
+| **Método de Clase**              | Método que recibe la clase como primer argumento en lugar de la instancia. | `class MiClase:`<br>&nbsp;&nbsp;&nbsp;&nbsp;`@classmethod`<br>&nbsp;&nbsp;&nbsp;&nbsp;`def metodo_clase(cls):`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`return cls` |
 
 
+## POO con C++
+
+| Concepto                          | Descripción                                                          | Ejemplo de Uso                                                 |
+|-----------------------------------|----------------------------------------------------------------------|---------------------------------------------------------------|
+| **Definición de Clase**           | Define una nueva clase en C++.                                      | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`public:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`MiClase();`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`~MiClase();`<br>&nbsp;&nbsp;&nbsp;&nbsp;`};` |
+| **Constructor**                   | Método especial que se llama al crear una instancia de la clase.    | `MiClase::MiClase() { /* Constructor */ }`                   |
+| **Destructor**                    | Método especial que se llama al destruir una instancia de la clase. | `MiClase::~MiClase() { /* Destructor */ }`                    |
+| **Método**                        | Función definida dentro de una clase que opera en instancias.       | `void MiClase::miMetodo() { /* código */ }`                  |
+| **Herencia**                      | Permite que una clase herede atributos y métodos de otra clase.     | `class ClaseBase { };`<br>`class ClaseDerivada : public ClaseBase { };` |
+| **Sobrecarga de Métodos**        | Permite definir métodos con el mismo nombre pero diferentes parámetros. | `void metodo(int a) { /* código */ }`<br>`void metodo(double b) { /* código */ }` |
+| **Polimorfismo**                 | Permite que un mismo método tenga diferentes implementaciones en diferentes clases. | `class Animal { public: virtual void hacerSonido(); };`<br>`class Perro : public Animal { public: void hacerSonido() override; };` |
+| **Encapsulamiento**               | Restringe el acceso a ciertos atributos o métodos dentro de la clase. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`private:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`int valorPrivado;`<br>&nbsp;&nbsp;&nbsp;&nbsp;`public:`<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`int getValorPrivado() { return valorPrivado; }`<br>`};` |
+| **Atributos de Clase**           | Atributos que pertenecen a la clase en lugar de a instancias individuales. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`static int atributoClase;`<br>`};` |
+| **Atributos de Instancia**       | Atributos que pertenecen a una instancia específica de la clase.    | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`int valorInstancia;`<br>`};` |
+| **Método Estático**              | Método que pertenece a la clase y no requiere acceso a la instancia. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`static void metodoEstatico() { /* código */ }`<br>`};` |
+| **Método de Clase**              | Método que recibe la clase como primer argumento en lugar de la instancia. | `class MiClase {`<br>&nbsp;&nbsp;&nbsp;&nbsp;`static void metodoClase() { /* código */ }`<br>`};` |

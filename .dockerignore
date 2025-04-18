@@ -1,0 +1,7 @@
+# Ignorar archivos y carpetas innecesarias
+.vscode
+.git
+*.md
+images
+robotica
+turtlesim

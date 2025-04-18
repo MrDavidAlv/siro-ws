@@ -1,0 +1,17 @@
+version: '3'
+services:
+  ros2_siro_ws:
+    image: ros2_siro_ws
+    container_name: ros2_siro_ws_container
+    network_mode: "host"
+    environment:
+      DISPLAY: ":0"
+    volumes:
+      - "/tmp/.X11-unix:/tmp/.X11-unix:rw"
+    tty: true
+    stdin_open: true
+
+# docker-compose up
+# docker-compose up --build
+# docker-compose down
+
