@@ -26,6 +26,7 @@ setup(
             'turtle_follower = python_siro.turtle_follower:main',
             'rendimientoPython = python_siro.rendimientoPython:main',
             'TurtleJoyControl = python_siro.TurtleJoyControl:main'
+
         ],
     },
 )
